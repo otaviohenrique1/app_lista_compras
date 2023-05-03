@@ -1,3 +1,4 @@
+import 'package:app_lista_compras/components/appbar_simples.dart';
 import 'package:app_lista_compras/components/botao.dart';
 import 'package:app_lista_compras/components/campo_texto.dart';
 import 'package:app_lista_compras/components/titulo.dart';
@@ -96,19 +97,19 @@ class _CodigoRecuperacaoState extends State<CodigoRecuperacao> {
   }
 }
 
-class AppBarSimples extends StatelessWidget implements PreferredSizeWidget {
-  const AppBarSimples({
-    super.key,
-  });
+// class AppBarSimples extends StatelessWidget implements PreferredSizeWidget {
+//   const AppBarSimples({
+//     super.key,
+//   });
 
-  @override
-  Size get preferredSize => const Size.fromHeight(0);
+//   @override
+//   Size get preferredSize => const Size.fromHeight(0);
 
-  @override
-  Widget build(BuildContext context) {
-    return AppBar(
-      backgroundColor: azul1,
-      toolbarHeight: 0,
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return AppBar(
+//       backgroundColor: azul1,
+//       toolbarHeight: 0,
+//     );
+//   }
+// }
