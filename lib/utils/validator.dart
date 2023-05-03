@@ -12,6 +12,13 @@ bool validaTamanhoMaximoSenha(String value) {
   return value.length >= 32;
 }
 
+String? validaCampoVazio(String? value) {
+  if (validaValor(value)) {
+    return "Campo vazio";
+  }
+  return null;
+}
+
 String? validaEmail(String? value) {
   if (validaValor(value)) {
     return "Campo vazio";

@@ -1,30 +1,31 @@
 import 'package:app_lista_compras/components/botao.dart';
-import 'package:app_lista_compras/components/botao_texto.dart';
 import 'package:app_lista_compras/components/campo_texto.dart';
 import 'package:app_lista_compras/components/titulo.dart';
-import 'package:app_lista_compras/pages/esqueci_senha.dart';
-import 'package:app_lista_compras/pages/novo_usuario.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/styles/fonts.dart';
 import 'package:app_lista_compras/utils/validator.dart';
 import 'package:flutter/material.dart';
 
-class Login extends StatefulWidget {
-  const Login({super.key});
+class NovoUsuario extends StatefulWidget {
+  const NovoUsuario({super.key});
 
   @override
-  State<Login> createState() => _LoginState();
+  State<NovoUsuario> createState() => _NovoUsuarioState();
 }
 
-class _LoginState extends State<Login> {
+class _NovoUsuarioState extends State<NovoUsuario> {
   var formKey = GlobalKey<FormState>();
+  final TextEditingController _nomeController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _senhaController = TextEditingController();
+  final TextEditingController _repitaSenhaController = TextEditingController();
 
   @override
   void dispose() {
+    _nomeController.dispose();
     _emailController.dispose();
     _senhaController.dispose();
+    _repitaSenhaController.dispose();
     super.dispose();
   }
 
@@ -32,10 +33,6 @@ class _LoginState extends State<Login> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: const AppBarSimples(),
-      // appBar: AppBar(
-      //   backgroundColor: azul1,
-      //   toolbarHeight: 0,
-      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -43,28 +40,24 @@ class _LoginState extends State<Login> {
             key: formKey,
             child: Column(
               children: [
-                const SizedBox(
-                  width: 96,
-                  height: 96,
-                  child: Placeholder(
-                    child: Titulo(
-                      titulo: "Logo",
-                      color: preto,
-                      alignment: Alignment.center,
-                      fontSize: 24,
-                      fontWeight: fontWeightBold,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 32),
                 const Titulo(
-                  titulo: "Faça login em sua conta",
+                  titulo: "Crie uma conta",
                   color: cinza1,
                   alignment: Alignment.center,
                   fontSize: 24,
                   fontWeight: fontWeightBold,
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 24),
+                CampoTexto(
+                  label: "Nome",
+                  hintText: "Insira seu nome",
+                  controller: _nomeController,
+                  exibeLabel: true,
+                  keyboardType: TextInputType.text,
+                  validator: validaCampoVazio,
+                  obscureText: false,
+                ),
+                const SizedBox(height: 24),
                 CampoTexto(
                   label: "Email",
                   hintText: "Insira seu endereço de email",
@@ -85,6 +78,16 @@ class _LoginState extends State<Login> {
                   validator: validaSenha,
                 ),
                 const SizedBox(height: 24),
+                CampoTexto(
+                  label: "Repita a senha",
+                  hintText: "Repita a sua senha",
+                  controller: _repitaSenhaController,
+                  exibeLabel: true,
+                  keyboardType: TextInputType.text,
+                  obscureText: true,
+                  validator: validaSenha,
+                ),
+                const SizedBox(height: 32),
                 Botao(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
@@ -100,47 +103,14 @@ class _LoginState extends State<Login> {
                   backgroundColor: azul1,
                   fontColor: branco,
                 ),
-                BotaoTexto(
+                const SizedBox(height: 8),
+                Botao(
                   onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const EsqueciSenha(),
-                      ),
-                    );
+                    Navigator.pop(context);
                   },
-                  label: "Esqueceu sua senha?",
-                  fontColor: azul1,
-                  decoration: TextDecoration.underline,
-                  decorationColor: azul1,
-                  fontWeight: fontWeightRegular,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      "Ainda não tem conta?",
-                      style: TextStyle(
-                        color: cinza1,
-                        fontSize: 16,
-                        fontFamily: fontFamily,
-                        fontWeight: fontWeightRegular,
-                      ),
-                    ),
-                    BotaoTexto(
-                      label: "Faça seu cadastro!",
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const NovoUsuario(),
-                          ),
-                        );
-                      },
-                      fontColor: azul1,
-                      fontWeight: fontWeightBold,
-                    ),
-                  ],
+                  label: "Voltar",
+                  backgroundColor: cinza1,
+                  fontColor: branco,
                 ),
               ],
             ),
