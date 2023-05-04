@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:app_lista_compras/components/lista_item.dart';
-import 'package:app_lista_compras/utils/data.dart';
-import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/pages/novo_produto.dart';
+import 'package:app_lista_compras/components/lista_item.dart';
+import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/styles/colors.dart';
+import 'package:app_lista_compras/utils/data_teste.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});

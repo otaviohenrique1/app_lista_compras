@@ -1,5 +1,5 @@
 import 'package:app_lista_compras/components/item_detalhes.dart';
-import 'package:app_lista_compras/utils/data.dart';
+import 'package:app_lista_compras/utils/data_teste.dart';
 import 'package:app_lista_compras/utils/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/appbar.dart';

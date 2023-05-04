@@ -1,5 +1,6 @@
 class Produto {
   Produto({
+    required this.id,
     required this.nome,
     required this.quantidade,
     required this.unidade,
@@ -8,6 +9,7 @@ class Produto {
     required this.ativo,
   });
 
+  final int id;
   final String nome;
   final num quantidade;
   final String unidade;
