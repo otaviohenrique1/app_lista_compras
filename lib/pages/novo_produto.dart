@@ -19,7 +19,7 @@ class NovoProduto extends StatefulWidget {
 class _NovoProdutoState extends State<NovoProduto> {
   var formKey = GlobalKey<FormState>();
   final TextEditingController _nomeController = TextEditingController();
-  final TextEditingController _precoController = TextEditingController();
+  // final TextEditingController _precoController = TextEditingController();
   final TextEditingController _categoriaController = TextEditingController();
   final TextEditingController _quantidadeController = TextEditingController();
   final TextEditingController _descricaoController = TextEditingController();
@@ -29,7 +29,7 @@ class _NovoProdutoState extends State<NovoProduto> {
   @override
   void dispose() {
     _nomeController.dispose();
-    _precoController.dispose();
+    // _precoController.dispose();
     _categoriaController.dispose();
     _quantidadeController.dispose();
     _descricaoController.dispose();
@@ -59,26 +59,16 @@ class _NovoProdutoState extends State<NovoProduto> {
                   validator: validaCampoVazio,
                   obscureText: false,
                 ),
-                const SizedBox(height: 24),
-                CampoTexto(
-                  label: "Quantidade",
-                  hintText: "Insira a quantidade do produto",
-                  controller: _precoController,
-                  exibeLabel: true,
-                  keyboardType: TextInputType.number,
-                  obscureText: false,
-                  validator: validaCampoVazio,
-                ),
-                const SizedBox(height: 24),
-                CampoTexto(
-                  label: "Preço (R\$)",
-                  hintText: "Insira o preço do produto",
-                  controller: _precoController,
-                  exibeLabel: true,
-                  keyboardType: TextInputType.number,
-                  obscureText: false,
-                  validator: validaCampoVazio,
-                ),
+                // const SizedBox(height: 24),
+                // CampoTexto(
+                //   label: "Preço (R\$)",
+                //   hintText: "Insira o preço do produto",
+                //   controller: _precoController,
+                //   exibeLabel: true,
+                //   keyboardType: TextInputType.number,
+                //   obscureText: false,
+                //   validator: validaCampoVazio,
+                // ),
                 const SizedBox(height: 24),
                 CampoTexto(
                   label: "Categoria",
@@ -138,7 +128,8 @@ class _NovoProdutoState extends State<NovoProduto> {
                 const SizedBox(height: 24),
                 CampoCheckbox(
                   item: CheckboxModel(
-                    texto: "Incluir na lista?",
+                    texto: "Ativo",
+                    // texto: "Incluir na lista?",
                     checked: isSelected,
                   ),
                 ),

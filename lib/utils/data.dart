@@ -7,3 +7,23 @@ List<String> listaTeste = List.generate(100, (index) {
   }
   return (index + 1).toString();
 });
+
+Map<String, dynamic> produtoTeste = {
+  "nome": "Leite",
+  "quantidade": 12,
+  "unidade": "un",
+  "categoria": "Bebida",
+  "descricao":
+      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident neque voluptates quo ipsam dignissimos sed aliquid delectus obcaecati dolorum nostrum itaque fuga, odit laboriosam ipsa quibusdam eius esse a numquam.",
+  // "descricao": "Leite integral da marca Jussara",
+  "ativo": false,
+};
+
+// Nome
+// Quantidade
+// Preço
+// Categoria
+// Quantidade
+// Unidade
+// Descrição
+// Incluir na lista?

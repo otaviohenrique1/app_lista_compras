@@ -1,7 +1,8 @@
+import 'package:flutter/material.dart';
+import 'package:app_lista_compras/pages/detalhes_produto.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/styles/fonts.dart';
 import 'package:app_lista_compras/utils/helpers.dart';
-import 'package:flutter/material.dart';
 
 enum ItemMenuEnum { exibir, editar, remover }
 
@@ -28,31 +29,18 @@ class _ListaItemState extends State<ListaItem> {
   Widget build(BuildContext context) {
     ItemMenuEnum? selectedMenu;
 
-    const subTitulo = TextStyle(
-      fontFamily: fontFamily,
-      fontWeight: fontWeightRegular,
-      fontSize: 16,
-    );
-
     return Padding(
       padding: const EdgeInsets.only(bottom: 8),
       child: ListTile(
         contentPadding: const EdgeInsets.only(left: 16, right: 0),
         // contentPadding: const EdgeInsets.symmetric(horizontal: 24),
-        title: Text(
-          widget.nome,
-          style: const TextStyle(
-            fontFamily: fontFamily,
-            fontWeight: fontWeightBold,
-            fontSize: 18,
-          ),
-        ),
+        title: Text(widget.nome, style: style18Regular),
         subtitle: Text(
           formataQuantidadeUnidade(
             quantidade: widget.quantidade,
             unidade: widget.unidade,
           ),
-          style: subTitulo,
+          style: style16Regular,
         ),
         tileColor: cinza2,
         shape: RoundedRectangleBorder(
@@ -70,12 +58,12 @@ class _ListaItemState extends State<ListaItem> {
             setState(() {
               selectedMenu = item;
               if (item == ItemMenuEnum.exibir) {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => DetalhesProduto(id: widget.id),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetalhesProduto(id: widget.id),
+                  ),
+                );
               } else if (item == ItemMenuEnum.editar) {
                 // Navigator.push(
                 //   context,
@@ -89,15 +77,15 @@ class _ListaItemState extends State<ListaItem> {
           itemBuilder: (BuildContext context) => <PopupMenuEntry<ItemMenuEnum>>[
             const PopupMenuItem<ItemMenuEnum>(
               value: ItemMenuEnum.exibir,
-              child: Text('Exibir', style: subTitulo),
+              child: Text('Exibir', style: style16Regular),
             ),
             const PopupMenuItem<ItemMenuEnum>(
               value: ItemMenuEnum.editar,
-              child: Text('Editar', style: subTitulo),
+              child: Text('Editar', style: style16Regular),
             ),
             const PopupMenuItem<ItemMenuEnum>(
               value: ItemMenuEnum.remover,
-              child: Text('Remover', style: subTitulo),
+              child: Text('Remover', style: style16Regular),
             ),
           ],
         ),
