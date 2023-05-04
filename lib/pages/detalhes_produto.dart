@@ -59,8 +59,7 @@ class _DetalhesProdutoState extends State<DetalhesProduto> {
               ItemDetalhes(
                 margin: const EdgeInsets.only(bottom: 16),
                 titulo: "Ativo",
-                descricao:
-                    (produtoTeste["ativo"] == false) ? "Inativo" : "Ativo",
+                descricao: (produtoTeste["ativo"] == false) ? "Não" : "Sim",
               ),
               const SizedBox(height: 32),
               Botao(
