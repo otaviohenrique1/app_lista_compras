@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/appbar_simples.dart';
 import 'package:app_lista_compras/components/botao.dart';
 import 'package:app_lista_compras/components/campo_texto.dart';
@@ -6,7 +7,6 @@ import 'package:app_lista_compras/pages/login.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/styles/fonts.dart';
 import 'package:app_lista_compras/utils/validator.dart';
-import 'package:flutter/material.dart';
 
 class RecuperacaoSenha extends StatefulWidget {
   const RecuperacaoSenha({super.key});

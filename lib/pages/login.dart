@@ -1,3 +1,5 @@
+import 'package:app_lista_compras/pages/homepage.dart';
+import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/appbar_simples.dart';
 import 'package:app_lista_compras/components/botao.dart';
 import 'package:app_lista_compras/components/botao_texto.dart';
@@ -8,7 +10,6 @@ import 'package:app_lista_compras/pages/novo_usuario.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/styles/fonts.dart';
 import 'package:app_lista_compras/utils/validator.dart';
-import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -89,12 +90,12 @@ class _LoginState extends State<Login> {
                 Botao(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const Homepage(),
-                      //   ),
-                      // );
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Homepage(),
+                        ),
+                      );
                     }
                   },
                   label: "Entrar",
