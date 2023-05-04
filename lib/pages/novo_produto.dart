@@ -4,15 +4,9 @@ import 'package:app_lista_compras/components/select.dart';
 import 'package:app_lista_compras/pages/homepage.dart';
 import 'package:app_lista_compras/styles/listas.dart';
 import 'package:flutter/material.dart';
-import 'package:app_lista_compras/components/appbar_simples.dart';
 import 'package:app_lista_compras/components/botao.dart';
-import 'package:app_lista_compras/components/botao_texto.dart';
 import 'package:app_lista_compras/components/campo_texto.dart';
-import 'package:app_lista_compras/components/titulo.dart';
-import 'package:app_lista_compras/pages/esqueci_senha.dart';
-import 'package:app_lista_compras/pages/novo_usuario.dart';
 import 'package:app_lista_compras/styles/colors.dart';
-import 'package:app_lista_compras/styles/fonts.dart';
 import 'package:app_lista_compras/utils/validator.dart';
 
 class NovoProduto extends StatefulWidget {
@@ -42,8 +36,8 @@ class _NovoProdutoState extends State<NovoProduto> {
     super.dispose();
   }
 
-  bool _isSelected = false;
-  bool _isSelected2 = false;
+  bool isSelected = true;
+  // bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +61,17 @@ class _NovoProdutoState extends State<NovoProduto> {
                 ),
                 const SizedBox(height: 24),
                 CampoTexto(
-                  label: "Preço",
+                  label: "Quantidade",
+                  hintText: "Insira a quantidade do produto",
+                  controller: _precoController,
+                  exibeLabel: true,
+                  keyboardType: TextInputType.number,
+                  obscureText: false,
+                  validator: validaCampoVazio,
+                ),
+                const SizedBox(height: 24),
+                CampoTexto(
+                  label: "Preço (R\$)",
                   hintText: "Insira o preço do produto",
                   controller: _precoController,
                   exibeLabel: true,
@@ -135,7 +139,7 @@ class _NovoProdutoState extends State<NovoProduto> {
                 CampoCheckbox(
                   item: CheckboxModel(
                     texto: "Incluir na lista?",
-                    checked: _isSelected2,
+                    checked: isSelected,
                   ),
                 ),
                 const SizedBox(height: 32),
@@ -143,11 +147,9 @@ class _NovoProdutoState extends State<NovoProduto> {
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
                       Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Homepage(),
-                        ),
-                      );
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Homepage()));
                     }
                   },
                   label: "Salvar",

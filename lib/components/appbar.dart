@@ -1,3 +1,4 @@
+import 'package:app_lista_compras/pages/busca.dart';
 import 'package:app_lista_compras/pages/login.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/styles/fonts.dart';
@@ -45,10 +46,10 @@ class _AppBarHeaderState extends State<AppBarHeader> {
             size: 36,
           ),
           onPressed: () {
-            // Navigator.push(
-            //   context,
-            //   MaterialPageRoute(builder: (context) => const Busca()),
-            // );
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const Busca()),
+            );
           },
         ),
         PopupMenuButton<ItemMenuEnum>(

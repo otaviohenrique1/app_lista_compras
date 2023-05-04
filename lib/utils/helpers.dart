@@ -1,3 +1,4 @@
-String formataQuantidadeUnidade(num quantidade, String unidade) {
+String formataQuantidadeUnidade(
+    {required num quantidade, required String unidade}) {
   return "$quantidade $unidade";
 }
