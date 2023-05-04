@@ -31,22 +31,6 @@ class Select extends StatefulWidget {
 class _SelectState extends State<Select> {
   @override
   Widget build(BuildContext context) {
-    // String dropdownValue =
-    //     (widget.outroItem == null) ? widget.lista.first : widget.outroItem!;
-
-    // var a = widget.lista.map<DropdownMenuItem<String>>((String value) {
-    //   return DropdownMenuItem<String>(
-    //     value: value,
-    //     child: Text(
-    //       value,
-    //       style: const TextStyle(
-    //         fontWeight: FontWeight.normal,
-    //         fontSize: 16,
-    //       ),
-    //     ),
-    //   );
-    // }).toList();
-
     return Column(
       children: [
         Visibility(
@@ -111,6 +95,21 @@ class _SelectState extends State<Select> {
     );
   }
 }
+
+// String dropdownValue =
+//     (widget.outroItem == null) ? widget.lista.first : widget.outroItem!;
+// var a = widget.lista.map<DropdownMenuItem<String>>((String value) {
+//   return DropdownMenuItem<String>(
+//     value: value,
+//     child: Text(
+//       value,
+//       style: const TextStyle(
+//         fontWeight: FontWeight.normal,
+//         fontSize: 16,
+//       ),
+//     ),
+//   );
+// }).toList();
 
 /*
 import 'package:flutter/material.dart';

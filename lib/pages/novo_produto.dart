@@ -1,4 +1,5 @@
 import 'package:app_lista_compras/components/appbar.dart';
+import 'package:app_lista_compras/components/campo_checkbox.dart';
 import 'package:app_lista_compras/components/select.dart';
 import 'package:app_lista_compras/pages/homepage.dart';
 import 'package:app_lista_compras/styles/listas.dart';
@@ -40,6 +41,9 @@ class _NovoProdutoState extends State<NovoProduto> {
     _descricaoController.dispose();
     super.dispose();
   }
+
+  bool _isSelected = false;
+  bool _isSelected2 = false;
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +131,13 @@ class _NovoProdutoState extends State<NovoProduto> {
                   obscureText: false,
                   validator: validaCampoVazio,
                 ),
+                const SizedBox(height: 24),
+                CampoCheckbox(
+                  item: CheckboxModel(
+                    texto: "Incluir na lista?",
+                    checked: _isSelected2,
+                  ),
+                ),
                 const SizedBox(height: 32),
                 Botao(
                   onPressed: () {
@@ -151,20 +162,3 @@ class _NovoProdutoState extends State<NovoProduto> {
     );
   }
 }
-
-// class AppBarSimples extends StatelessWidget implements PreferredSizeWidget {
-//   const AppBarSimples({
-//     super.key,
-//   });
-
-//   @override
-//   Size get preferredSize => const Size.fromHeight(0);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AppBar(
-//       backgroundColor: azul1,
-//       toolbarHeight: 0,
-//     );
-//   }
-// }

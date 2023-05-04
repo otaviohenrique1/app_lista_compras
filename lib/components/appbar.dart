@@ -18,7 +18,7 @@ class AppBarHeader extends StatefulWidget implements PreferredSizeWidget {
 
   @override
   Size get preferredSize {
-    return const Size.fromHeight(67);
+    return const Size.fromHeight(60);
   }
 }
 
@@ -29,6 +29,7 @@ class _AppBarHeaderState extends State<AppBarHeader> {
 
     return AppBar(
       backgroundColor: azul1,
+      iconTheme: const IconThemeData(color: branco),
       title: Text(
         widget.titulo,
         style: const TextStyle(
