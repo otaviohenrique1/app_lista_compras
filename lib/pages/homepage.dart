@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:app_lista_compras/components/appbar.dart';
+import 'package:app_lista_compras/pages/novo_produto.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/styles/fonts.dart';
 
@@ -90,16 +92,7 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: azul1,
-        title: const Text(
-          "Lista",
-          style: TextStyle(
-            color: branco,
-            fontFamily: fontFamily,
-          ),
-        ),
-      ),
+      appBar: const AppBarHeader(titulo: "Lista"),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ListView.builder(
@@ -146,7 +139,14 @@ class _HomepageState extends State<Homepage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const NovoProduto(),
+            ),
+          );
+        },
         backgroundColor: azul1,
         tooltip: "Adicionar produto",
         shape: const CircleBorder(),

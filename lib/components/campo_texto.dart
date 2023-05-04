@@ -13,6 +13,7 @@ class CampoTexto extends StatelessWidget {
     this.validator,
     this.keyboardType,
     this.initialValue,
+    this.maxLines,
   });
 
   final bool exibeLabel;
@@ -23,6 +24,7 @@ class CampoTexto extends StatelessWidget {
   final TextInputType? keyboardType;
   final bool obscureText;
   final String? initialValue;
+  final int? maxLines;
 
   @override
   Widget build(BuildContext context) {
@@ -47,11 +49,20 @@ class CampoTexto extends StatelessWidget {
         TextFormField(
           controller: controller,
           validator: validator,
+          maxLines: (maxLines == null) ? 1 : maxLines,
           obscureText: obscureText,
           decoration: InputDecoration(
             hintText: hintText,
-            hintStyle: const TextStyle(fontSize: 16),
-            errorStyle: const TextStyle(fontSize: 16),
+            hintStyle: const TextStyle(
+              fontSize: 16,
+              fontFamily: fontFamily,
+              fontWeight: fontWeightRegular,
+            ),
+            errorStyle: const TextStyle(
+              fontSize: 16,
+              fontFamily: fontFamily,
+              fontWeight: fontWeightRegular,
+            ),
             border: const OutlineInputBorder(
               borderRadius: BorderRadius.all(Radius.circular(8)),
               borderSide: BorderSide(
