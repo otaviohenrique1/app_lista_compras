@@ -1,3 +1,6 @@
+import 'package:app_lista_compras/models/usuario_model.dart';
+import 'package:app_lista_compras/utils/helpers.dart';
+import 'package:app_lista_compras/utils/usuario_data.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/appbar_simples.dart';
 import 'package:app_lista_compras/components/botao.dart';
@@ -32,6 +35,8 @@ class _NovoUsuarioState extends State<NovoUsuario> {
 
   @override
   Widget build(BuildContext context) {
+    UsuarioData usuarioData = UsuarioData();
+
     return Scaffold(
       appBar: const AppBarSimples(),
       body: SingleChildScrollView(
@@ -92,12 +97,15 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                 Botao(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const Homepage(),
-                      //   ),
-                      // );
+                      setState(() {
+                        usuarioData.criarUsuario(UsuarioModel(
+                          id: geraUuid(),
+                          nome: _nomeController.text,
+                          email: _emailController.text,
+                          senha: _senhaController.text,
+                        ));
+                      });
+                      Navigator.pop(context);
                     }
                   },
                   label: "Entrar",

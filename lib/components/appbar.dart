@@ -31,7 +31,8 @@ class _AppBarHeaderState extends State<AppBarHeader> {
   @override
   Widget build(BuildContext context) {
     ItemMenuEnum? selectedMenu;
-    int usuarioId = usuarioTeste3[0].id;
+
+    String usuarioId = usuarioTeste[0].id;
 
     return AppBar(
       backgroundColor: azul1,

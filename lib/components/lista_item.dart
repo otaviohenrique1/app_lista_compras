@@ -16,7 +16,7 @@ class ListaItem extends StatefulWidget {
     required this.unidade,
   });
 
-  final int id;
+  final String id;
   final String nome;
   final num quantidade;
   final String unidade;

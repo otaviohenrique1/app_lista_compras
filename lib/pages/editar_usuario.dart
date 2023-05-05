@@ -1,16 +1,11 @@
-import 'package:app_lista_compras/components/appbar.dart';
-import 'package:app_lista_compras/utils/usuario_data.dart';
 import 'package:flutter/material.dart';
-import 'package:app_lista_compras/components/appbar_simples.dart';
+import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/botao.dart';
 import 'package:app_lista_compras/components/campo_texto.dart';
-import 'package:app_lista_compras/components/titulo.dart';
-import 'package:app_lista_compras/styles/colors.dart';
-import 'package:app_lista_compras/styles/fonts.dart';
+import 'package:app_lista_compras/utils/usuario_data.dart';
 import 'package:app_lista_compras/utils/validator.dart';
+import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/models/usuario_model.dart';
-
-import '../utils/data_teste.dart';
 
 class EditarUsuario extends StatefulWidget {
   const EditarUsuario({
@@ -18,7 +13,7 @@ class EditarUsuario extends StatefulWidget {
     required this.id,
   });
 
-  final int id;
+  final String id;
 
   @override
   State<EditarUsuario> createState() => _EditarUsuarioState();

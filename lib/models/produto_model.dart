@@ -9,7 +9,7 @@ class ProdutoModel {
     required this.ativo,
   });
 
-  /* final */ int id;
+  /* final */ String id;
   /* final */ String nome;
   /* final */ num quantidade;
   /* final */ String unidade;

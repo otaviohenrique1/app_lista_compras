@@ -2,11 +2,11 @@ import 'package:app_lista_compras/models/produto_model.dart';
 import 'package:app_lista_compras/utils/data_teste.dart';
 
 class ProdutoData {
-  ProdutoModel buscaProduto(int id) {
-    ProdutoModel resultado = produtoTeste2.firstWhere(
+  ProdutoModel buscaProduto(String id) {
+    ProdutoModel resultado = produtoTeste.firstWhere(
       (item) => item.id == id,
       orElse: () => ProdutoModel(
-        id: 0,
+        id: "",
         nome: "",
         quantidade: 0,
         unidade: "",
@@ -20,15 +20,15 @@ class ProdutoData {
   }
 
   void criarProduto(ProdutoModel produto) {
-    produtoTeste2.add(produto);
+    produtoTeste.add(produto);
   }
 
-  void removerProduto(int id) {
-    produtoTeste2.removeWhere((item) => item.id == id);
+  void removerProduto(String id) {
+    produtoTeste.removeWhere((item) => item.id == id);
   }
 
-  void editarProduto(int id, ProdutoModel novoProduto) {
-    ProdutoModel produto = produtoTeste2.firstWhere((item) => item.id == id);
+  void editarProduto(String id, ProdutoModel novoProduto) {
+    ProdutoModel produto = produtoTeste.firstWhere((item) => item.id == id);
     produto.nome = novoProduto.nome;
     produto.quantidade = novoProduto.quantidade;
     produto.unidade = novoProduto.unidade;

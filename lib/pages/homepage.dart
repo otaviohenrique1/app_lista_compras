@@ -26,13 +26,13 @@ class _HomepageState extends State<Homepage> {
         child: ListView.builder(
           padding: const EdgeInsets.symmetric(vertical: 24),
           // padding: const EdgeInsets.symmetric(vertical: 24),
-          itemCount: produtoTeste2.length,
+          itemCount: produtoTeste.length,
           itemBuilder: (context, index) {
             return ListaItem(
-              id: produtoTeste2[index].id,
-              nome: produtoTeste2[index].nome,
-              quantidade: produtoTeste2[index].quantidade,
-              unidade: produtoTeste2[index].unidade,
+              id: produtoTeste[index].id,
+              nome: produtoTeste[index].nome,
+              quantidade: produtoTeste[index].quantidade,
+              unidade: produtoTeste[index].unidade,
             );
           },
         ),

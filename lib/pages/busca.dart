@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:app_lista_compras/pages/homepage.dart';
 import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/campo_checkbox.dart';
 import 'package:app_lista_compras/components/botao.dart';
@@ -60,10 +59,7 @@ class _BuscaState extends State<Busca> {
                 Botao(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Homepage()));
+                      //
                     }
                   },
                   label: "Buscar",

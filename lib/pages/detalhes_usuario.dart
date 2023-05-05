@@ -14,7 +14,7 @@ class DetalhesUsuario extends StatefulWidget {
     required this.id,
   });
 
-  final int id;
+  final String id;
 
   @override
   State<DetalhesUsuario> createState() => _DetalhesUsuarioState();

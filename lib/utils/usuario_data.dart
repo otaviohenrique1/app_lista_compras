@@ -2,11 +2,11 @@ import 'package:app_lista_compras/models/usuario_model.dart';
 import 'package:app_lista_compras/utils/data_teste.dart';
 
 class UsuarioData {
-  UsuarioModel buscaUsuario(int id) {
-    UsuarioModel resultado = usuarioTeste3.firstWhere(
+  UsuarioModel buscaUsuario(String id) {
+    UsuarioModel resultado = usuarioTeste.firstWhere(
       (item) => item.id == id,
       orElse: () => UsuarioModel(
-        id: 0,
+        id: "",
         nome: "",
         email: "",
         senha: "",
@@ -17,18 +17,33 @@ class UsuarioData {
   }
 
   void criarUsuario(UsuarioModel usuario) {
-    usuarioTeste3.add(usuario);
+    usuarioTeste.add(usuario);
   }
 
-  void removerUsuario(int id) {
-    usuarioTeste3.removeWhere((item) => item.id == id);
+  void removerUsuario(String id) {
+    usuarioTeste.removeWhere((item) => item.id == id);
   }
 
-  void editarUsuario(int id, UsuarioModel novoUsuario) {
-    UsuarioModel usuario = usuarioTeste3.firstWhere((item) => item.id == id);
+  void editarUsuario(String id, UsuarioModel novoUsuario) {
+    UsuarioModel usuario = usuarioTeste.firstWhere((item) => item.id == id);
     usuario.nome = novoUsuario.nome;
     usuario.nome = novoUsuario.nome;
     usuario.email = novoUsuario.email;
     usuario.senha = novoUsuario.senha;
+  }
+
+  validaLogin({
+    required String email,
+    required String senha,
+  }) {
+    usuarioTeste.firstWhere((item) {
+      bool validaEmail = item.email == email;
+      bool validaSenha = item.senha == senha;
+      return validaEmail && validaSenha;
+    });
+
+    var teste = usuarioTeste.where((item) => item.email == email);
+    var validaEmail = usuarioTeste.firstWhere((item) => item.email == email);
+    var validaSenha = usuarioTeste.firstWhere((item) => item.senha == senha);
   }
 }

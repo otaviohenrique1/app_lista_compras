@@ -1,3 +1,6 @@
+import 'package:app_lista_compras/models/produto_model.dart';
+import 'package:app_lista_compras/utils/helpers.dart';
+import 'package:app_lista_compras/utils/produto_data.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/pages/homepage.dart';
 import 'package:app_lista_compras/components/appbar.dart';
@@ -41,6 +44,8 @@ class _NovoProdutoState extends State<NovoProduto> {
 
   @override
   Widget build(BuildContext context) {
+    ProdutoData produtoData = ProdutoData();
+
     return Scaffold(
       appBar: const AppBarHeader(
         titulo: "Novo produto",
@@ -138,10 +143,18 @@ class _NovoProdutoState extends State<NovoProduto> {
                 Botao(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Homepage()));
+                      setState(() {
+                        produtoData.criarProduto(ProdutoModel(
+                          id: geraUuid(),
+                          nome: _nomeController.text,
+                          quantidade: num.parse(_quantidadeController.text),
+                          unidade: dropdownValueUnidadeQuantidade,
+                          categoria: _categoriaController.text,
+                          descricao: _descricaoController.text,
+                          ativo: isSelected,
+                        ));
+                      });
+                      Navigator.pop(context);
                     }
                   },
                   label: "Salvar",

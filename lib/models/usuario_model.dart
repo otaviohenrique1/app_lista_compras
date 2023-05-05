@@ -6,7 +6,7 @@ class UsuarioModel {
     required this.senha,
   });
 
-  /* final */ int id;
+  /* final */ String id;
   /* final */ String nome;
   /* final */ String email;
   /* final */ String senha;

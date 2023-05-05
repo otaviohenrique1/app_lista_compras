@@ -16,7 +16,7 @@ class EditarProduto extends StatefulWidget {
     required this.id,
   });
 
-  final int id;
+  final String id;
 
   @override
   State<EditarProduto> createState() => _EditarProdutoState();
@@ -142,7 +142,20 @@ class _EditarProdutoState extends State<EditarProduto> {
                 Botao(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      // setState(() {});
+                      setState(() {
+                        produtoData.editarProduto(
+                          widget.id,
+                          ProdutoModel(
+                            id: widget.id,
+                            nome: _nomeController.text,
+                            quantidade: num.parse(_quantidadeController.text),
+                            unidade: dropdownValueUnidadeQuantidade,
+                            categoria: _categoriaController.text,
+                            descricao: _descricaoController.text,
+                            ativo: isSelected,
+                          ),
+                        );
+                      });
                       Navigator.pop(context);
                     }
                   },

@@ -11,61 +11,24 @@ List<String> listaTeste = List.generate(100, (index) {
   return (index + 1).toString();
 });
 
-List<Map<String, dynamic>> usuarioTeste = [
-  {
-    "nome": "Usuario",
-    "email": "usuario@email.com",
-    "senha": "0123456789",
-  },
-  {
-    "nome": "Usuario2",
-    "email": "usuario2@email.com",
-    "senha": "9876543210",
-  },
-];
-
-Map<String, dynamic> usuarioTeste2 = {
-  "nome": "Usuario",
-  "email": "usuario@email.com",
-  "senha": "0123456789",
-};
-
-List<UsuarioModel> usuarioTeste3 = [
+List<UsuarioModel> usuarioTeste = [
   UsuarioModel(
-    id: 1,
+    id: "187726dc-577a-4322-b691-68b0b2435e45",
     nome: "Usuario",
     email: "usuario@email.com",
     senha: "0123456789",
   ),
   UsuarioModel(
-    id: 2,
+    id: "f1a169c1-0106-4313-b270-85977311d3aa",
     nome: "Usuario2",
     email: "usuario2@email.com",
     senha: "9876543210",
   ),
 ];
 
-UsuarioModel usuarioTeste4 = UsuarioModel(
-  id: 1,
-  nome: "Usuario",
-  email: "usuario@email.com",
-  senha: "0123456789",
-);
-
-Map<String, dynamic> produtoTeste = {
-  "nome": "Leite",
-  "quantidade": 12,
-  "unidade": "un",
-  "categoria": "Bebida",
-  "descricao":
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident neque voluptates quo ipsam dignissimos sed aliquid delectus obcaecati dolorum nostrum itaque fuga, odit laboriosam ipsa quibusdam eius esse a numquam.",
-  // "descricao": "Leite integral da marca Jussara",
-  "ativo": true,
-};
-
-List<ProdutoModel> produtoTeste2 = [
+List<ProdutoModel> produtoTeste = [
   ProdutoModel(
-    id: 1,
+    id: "1dcf391d-addf-4561-a577-6925573c6731",
     nome: "Leite",
     quantidade: 30,
     unidade: "un",
@@ -75,7 +38,7 @@ List<ProdutoModel> produtoTeste2 = [
     ativo: true,
   ),
   ProdutoModel(
-    id: 2,
+    id: "2bcaf425-9d92-4ec3-9acf-bc0e6e410f12",
     nome: "Coca-cola",
     quantidade: 12,
     unidade: "un",
@@ -85,7 +48,7 @@ List<ProdutoModel> produtoTeste2 = [
     ativo: true,
   ),
   ProdutoModel(
-    id: 3,
+    id: "f5f8919e-a037-42bf-9339-4222584202b7",
     nome: "Mortadela",
     quantidade: 500,
     unidade: "g",
@@ -95,7 +58,7 @@ List<ProdutoModel> produtoTeste2 = [
     ativo: true,
   ),
   ProdutoModel(
-    id: 4,
+    id: "d856568d-3c9c-4fee-82db-ab396a0bf7be",
     nome: "Presunto",
     quantidade: 600,
     unidade: "g",
@@ -105,7 +68,7 @@ List<ProdutoModel> produtoTeste2 = [
     ativo: true,
   ),
   ProdutoModel(
-    id: 5,
+    id: "2bd1cba0-2157-4947-a8ad-9a05730f2b50",
     nome: "Queijo",
     quantidade: 600,
     unidade: "g",
@@ -115,7 +78,7 @@ List<ProdutoModel> produtoTeste2 = [
     ativo: true,
   ),
   ProdutoModel(
-    id: 6,
+    id: "5d5004f3-c624-42b4-a4f7-4bcb8b2eeb37",
     nome: "Ovo de páscoa",
     quantidade: 10,
     unidade: "un",
@@ -125,7 +88,7 @@ List<ProdutoModel> produtoTeste2 = [
     ativo: true,
   ),
   ProdutoModel(
-    id: 7,
+    id: "deae0092-dfc1-41f3-aab5-858a89ee8c4b",
     nome: "Tomate",
     quantidade: 1,
     unidade: "kg",
@@ -135,7 +98,7 @@ List<ProdutoModel> produtoTeste2 = [
     ativo: true,
   ),
   ProdutoModel(
-    id: 8,
+    id: "b688debd-9f9c-4a46-b316-c1e126e0d62e",
     nome: "Laranja",
     quantidade: 2,
     unidade: "kg",
@@ -145,7 +108,7 @@ List<ProdutoModel> produtoTeste2 = [
     ativo: true,
   ),
   ProdutoModel(
-    id: 9,
+    id: "7b762b40-1ec1-429c-b985-ec6b76e3a8e4",
     nome: "Maçã",
     quantidade: 3,
     unidade: "kg",
@@ -155,71 +118,3 @@ List<ProdutoModel> produtoTeste2 = [
     ativo: true,
   ),
 ];
-
-List<Map<String, dynamic>> produtoTeste3 = [
-  {
-    "nome": "Leite",
-    "quantidade": 30,
-    "unidade": "un",
-    "categoria": "Bebida",
-  },
-  {
-    "nome": "Coca-cola",
-    "quantidade": 12,
-    "unidade": "un",
-    "categoria": "Bebida",
-  },
-  {
-    "nome": "Mortadela",
-    "quantidade": 500,
-    "unidade": "g",
-    "categoria": "Comida",
-  },
-  {
-    "nome": "Presunto",
-    "quantidade": 600,
-    "unidade": "g",
-    "categoria": "Comida",
-  },
-  {
-    "nome": "Queijo",
-    "quantidade": 600,
-    "unidade": "g",
-    "categoria": "Comida",
-  },
-  {
-    "nome": "Ovo de páscoa",
-    "quantidade": 10,
-    "unidade": "un",
-    "categoria": "Comida",
-  },
-  {
-    "nome": "Tomate",
-    "quantidade": 1,
-    "unidade": "kg",
-    "categoria": "Comida",
-  },
-  {
-    "nome": "Laranja",
-    "quantidade": 2,
-    "unidade": "kg",
-    "categoria": "Comida",
-  },
-  {
-    "nome": "Maçã",
-    "quantidade": 3,
-    "unidade": "kg",
-    "categoria": "Bebida",
-  },
-];
-
-ProdutoModel produtoTeste4 = ProdutoModel(
-  id: 1,
-  nome: "Leite",
-  quantidade: 30,
-  unidade: "un",
-  categoria: "Bebida",
-  descricao:
-      "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident neque voluptates quo ipsam dignissimos sed aliquid delectus obcaecati dolorum nostrum itaque fuga, odit laboriosam ipsa quibusdam eius esse a numquam.",
-  ativo: true,
-);
