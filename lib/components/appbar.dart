@@ -45,18 +45,21 @@ class _AppBarHeaderState extends State<AppBarHeader> {
         ),
       ),
       actions: [
-        IconButton(
-          icon: const Icon(
-            Icons.search,
-            color: Colors.white,
-            size: 36,
+        Visibility(
+          visible: widget.exibeBusca,
+          child: IconButton(
+            icon: const Icon(
+              Icons.search,
+              color: Colors.white,
+              size: 36,
+            ),
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Busca()),
+              );
+            },
           ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => const Busca()),
-            );
-          },
         ),
         PopupMenuButton<ItemMenuEnum>(
           initialValue: selectedMenu,
