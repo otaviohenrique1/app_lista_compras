@@ -1,4 +1,6 @@
+import 'package:app_lista_compras/models/usuario_model.dart';
 import 'package:app_lista_compras/pages/homepage.dart';
+import 'package:app_lista_compras/utils/usuario_data.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/appbar_simples.dart';
 import 'package:app_lista_compras/components/botao.dart';
@@ -32,6 +34,8 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    UsuarioData usuarioData = UsuarioData();
+
     return Scaffold(
       appBar: const AppBarSimples(),
       // appBar: AppBar(
@@ -90,12 +94,57 @@ class _LoginState extends State<Login> {
                 Botao(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const Homepage(),
-                        ),
+                      UsuarioModel? usuarioBuscado = usuarioData.validaLogin(
+                        email: _emailController.text,
+                        senha: _senhaController.text,
                       );
+
+                      if (usuarioBuscado != null) {
+                        /* enviar o usuario */
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const Homepage(),
+                          ),
+                        );
+                      } else {
+                        // ScaffoldMessenger.of(context).showSnackBar(
+                        //   const SnackBar(
+                        //     content: Text("Criando uma nova tarefa"),
+                        //   ),
+                        // );
+                        showDialog<String>(
+                          context: context,
+                          builder: (BuildContext context) => AlertDialog(
+                            title: const Text("Erro!"),
+                            content: const Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text("E-mail ou senha inválidos"),
+                              ],
+                            ),
+                            icon: const Icon(
+                              Icons.warning_amber_rounded,
+                              size: 64,
+                            ),
+                            iconColor: Colors.red,
+                            actions: <Widget>[
+                              TextButton(
+                                onPressed: () => Navigator.pop(context),
+                                child: const Text(
+                                  'Fechar',
+                                  style: TextStyle(
+                                    color: Colors.red,
+                                    fontFamily: fontFamily,
+                                    fontWeight: fontWeightRegular,
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      }
                     }
                   },
                   label: "Entrar",

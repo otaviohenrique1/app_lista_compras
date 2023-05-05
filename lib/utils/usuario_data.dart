@@ -32,18 +32,27 @@ class UsuarioData {
     usuario.senha = novoUsuario.senha;
   }
 
-  validaLogin({
+  UsuarioModel? validaLogin({
     required String email,
     required String senha,
   }) {
-    usuarioTeste.firstWhere((item) {
-      bool validaEmail = item.email == email;
-      bool validaSenha = item.senha == senha;
-      return validaEmail && validaSenha;
-    });
+    // usuarioTeste.firstWhere((item) {
+    //   bool validaEmail = item.email == email;
+    //   bool validaSenha = item.senha == senha;
+    //   return validaEmail && validaSenha;
+    // });
 
-    var teste = usuarioTeste.where((item) => item.email == email);
-    var validaEmail = usuarioTeste.firstWhere((item) => item.email == email);
-    var validaSenha = usuarioTeste.firstWhere((item) => item.senha == senha);
+    // var teste = usuarioTeste.where((item) => item.email == email);
+    // var validaEmail = usuarioTeste.firstWhere((item) => item.email == email);
+    // var validaSenha = usuarioTeste.firstWhere((item) => item.senha == senha);
+
+    for (var usuario in usuarioTeste) {
+      bool validaEmail = usuario.email == email;
+      bool validaSenha = usuario.senha == senha;
+      if (validaEmail && validaSenha) {
+        return usuario;
+      }
+    }
+    return null;
   }
 }
