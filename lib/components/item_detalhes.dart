@@ -1,5 +1,5 @@
-import 'package:app_lista_compras/styles/fonts.dart';
 import 'package:flutter/material.dart';
+import 'package:app_lista_compras/styles/fonts.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 
 class ItemDetalhes extends StatelessWidget {

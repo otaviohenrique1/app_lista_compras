@@ -1,6 +1,9 @@
+import 'package:app_lista_compras/pages/detalhes_produto.dart';
+import 'package:app_lista_compras/pages/detalhes_usuario.dart';
+import 'package:flutter/material.dart';
 import 'package:app_lista_compras/pages/busca.dart';
 import 'package:app_lista_compras/pages/login.dart';
-import 'package:flutter/material.dart';
+import 'package:app_lista_compras/utils/data_teste.dart';
 import 'package:app_lista_compras/styles/fonts.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 
@@ -10,9 +13,11 @@ class AppBarHeader extends StatefulWidget implements PreferredSizeWidget {
   const AppBarHeader({
     super.key,
     required this.titulo,
+    required this.exibeBusca,
   });
 
   final String titulo;
+  final bool exibeBusca;
 
   @override
   State<AppBarHeader> createState() => _AppBarHeaderState();
@@ -27,6 +32,7 @@ class _AppBarHeaderState extends State<AppBarHeader> {
   @override
   Widget build(BuildContext context) {
     ItemMenuEnum? selectedMenu;
+    int usuarioId = usuarioTeste3[0].id;
 
     return AppBar(
       backgroundColor: azul1,
@@ -63,15 +69,17 @@ class _AppBarHeaderState extends State<AppBarHeader> {
             setState(() {
               selectedMenu = item;
               if (item == ItemMenuEnum.busca) {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const Busca()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Busca()),
+                );
               } else if (item == ItemMenuEnum.pefil) {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(builder: (context) => const Perfil()),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => DetalhesUsuario(id: usuarioId),
+                  ),
+                );
               } else if (item == ItemMenuEnum.sair) {
                 showDialog<String>(
                   context: context,
