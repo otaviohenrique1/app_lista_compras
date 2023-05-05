@@ -1,12 +1,11 @@
+import 'package:flutter/material.dart';
+import 'package:app_lista_compras/pages/homepage.dart';
 import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/campo_checkbox.dart';
-import 'package:app_lista_compras/components/select.dart';
-import 'package:app_lista_compras/pages/homepage.dart';
-import 'package:app_lista_compras/styles/listas.dart';
-import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/botao.dart';
 import 'package:app_lista_compras/components/campo_texto.dart';
 import 'package:app_lista_compras/styles/colors.dart';
+import 'package:app_lista_compras/styles/listas.dart';
 import 'package:app_lista_compras/utils/validator.dart';
 
 class Busca extends StatefulWidget {
@@ -33,7 +32,10 @@ class _BuscaState extends State<Busca> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarHeader(titulo: "Busca"),
+      appBar: const AppBarHeader(
+        titulo: "Busca",
+        exibeBusca: false,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24),

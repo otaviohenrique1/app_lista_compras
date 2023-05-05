@@ -1,3 +1,4 @@
+import 'package:app_lista_compras/pages/editar_produto.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/pages/detalhes_produto.dart';
 import 'package:app_lista_compras/styles/colors.dart';
@@ -65,12 +66,12 @@ class _ListaItemState extends State<ListaItem> {
                   ),
                 );
               } else if (item == ItemMenuEnum.editar) {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => EdicaoProduto(id: widget.id),
-                //   ),
-                // );
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => EditarProduto(id: widget.id),
+                  ),
+                );
               } else if (item == ItemMenuEnum.remover) {}
             });
           },
