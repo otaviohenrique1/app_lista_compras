@@ -1,10 +1,12 @@
+import 'package:app_lista_compras/utils/helpers.dart';
 import 'package:flutter/material.dart';
-import 'package:app_lista_compras/models/usuario_model.dart';
+import 'package:app_lista_compras/pages/editar_usuario.dart';
 import 'package:app_lista_compras/components/item_detalhes.dart';
 import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/botao.dart';
+import 'package:app_lista_compras/utils/usuario_data.dart';
 import 'package:app_lista_compras/styles/colors.dart';
-import 'package:app_lista_compras/utils/data_teste.dart';
+import 'package:app_lista_compras/models/usuario_model.dart';
 
 class DetalhesUsuario extends StatefulWidget {
   const DetalhesUsuario({
@@ -21,15 +23,8 @@ class DetalhesUsuario extends StatefulWidget {
 class _DetalhesUsuarioState extends State<DetalhesUsuario> {
   @override
   Widget build(BuildContext context) {
-    UsuarioModel usuario = usuarioTeste3.firstWhere(
-      (item) => item.id == widget.id,
-      orElse: () => UsuarioModel(
-        id: 0,
-        nome: "",
-        email: "",
-        senha: "",
-      ),
-    );
+    UsuarioData usuarioData = UsuarioData();
+    UsuarioModel usuario = usuarioData.buscaUsuario(widget.id);
 
     return Scaffold(
       appBar: const AppBarHeader(
@@ -41,7 +36,6 @@ class _DetalhesUsuarioState extends State<DetalhesUsuario> {
           padding: const EdgeInsets.all(24),
           child: Column(
             children: [
-              const SizedBox(height: 32),
               ItemDetalhes(
                 margin: const EdgeInsets.only(bottom: 16),
                 titulo: "ID",
@@ -54,21 +48,21 @@ class _DetalhesUsuarioState extends State<DetalhesUsuario> {
               ),
               ItemDetalhes(
                 margin: const EdgeInsets.only(bottom: 16),
-                titulo: "Quantidade",
+                titulo: "E-mail",
                 descricao: usuario.email,
               ),
               ItemDetalhes(
                 margin: const EdgeInsets.only(bottom: 16),
-                titulo: "Categoria",
-                descricao: usuario.senha,
+                titulo: "Senha",
+                descricao: escondeSenha(usuario.senha),
               ),
               const SizedBox(height: 32),
               Botao(
                 onPressed: () {
-                  // Navigator.push(
-                  //     context,
-                  //     MaterialPageRoute(
-                  //         builder: (context) => const Homepage()));
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => EditarUsuario(id: widget.id)));
                 },
                 label: "Editar",
                 backgroundColor: azul1,

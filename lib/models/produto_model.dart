@@ -9,11 +9,11 @@ class ProdutoModel {
     required this.ativo,
   });
 
-  final int id;
-  final String nome;
-  final num quantidade;
-  final String unidade;
-  final String categoria;
-  final String descricao;
-  final bool ativo;
+  /* final */ int id;
+  /* final */ String nome;
+  /* final */ num quantidade;
+  /* final */ String unidade;
+  /* final */ String categoria;
+  /* final */ String descricao;
+  /* final */ bool ativo;
 }

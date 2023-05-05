@@ -1,3 +1,5 @@
+import 'package:app_lista_compras/components/appbar.dart';
+import 'package:app_lista_compras/utils/usuario_data.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/appbar_simples.dart';
 import 'package:app_lista_compras/components/botao.dart';
@@ -40,18 +42,19 @@ class _EditarUsuarioState extends State<EditarUsuario> {
 
   @override
   Widget build(BuildContext context) {
-    UsuarioModel usuario = usuarioTeste3.firstWhere(
-      (item) => item.id == widget.id,
-      orElse: () => UsuarioModel(
-        id: 0,
-        nome: "",
-        email: "",
-        senha: "",
-      ),
-    );
+    UsuarioData usuarioData = UsuarioData();
+    UsuarioModel usuario = usuarioData.buscaUsuario(widget.id);
+
+    _nomeController.text = usuario.nome;
+    _emailController.text = usuario.email;
+    _senhaController.text = usuario.senha;
+    _repitaSenhaController.text = usuario.senha;
 
     return Scaffold(
-      appBar: const AppBarSimples(),
+      appBar: const AppBarHeader(
+        titulo: "Editar usuario",
+        exibeBusca: true,
+      ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -59,14 +62,6 @@ class _EditarUsuarioState extends State<EditarUsuario> {
             key: formKey,
             child: Column(
               children: [
-                const Titulo(
-                  titulo: "Crie uma conta",
-                  color: cinza1,
-                  alignment: Alignment.center,
-                  fontSize: 24,
-                  fontWeight: fontWeightBold,
-                ),
-                const SizedBox(height: 24),
                 CampoTexto(
                   label: "Nome",
                   hintText: "Insira seu nome",
@@ -110,25 +105,22 @@ class _EditarUsuarioState extends State<EditarUsuario> {
                 Botao(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => const Homepage(),
-                      //   ),
-                      // );
+                      setState(() {
+                        usuarioData.editarUsuario(
+                          widget.id,
+                          UsuarioModel(
+                            id: widget.id,
+                            nome: _nomeController.text,
+                            email: _emailController.text,
+                            senha: _senhaController.text,
+                          ),
+                        );
+                        Navigator.pop(context);
+                      });
                     }
                   },
-                  label: "Entrar",
+                  label: "Salvar",
                   backgroundColor: azul1,
-                  fontColor: branco,
-                ),
-                const SizedBox(height: 8),
-                Botao(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  label: "Voltar",
-                  backgroundColor: cinza1,
                   fontColor: branco,
                 ),
               ],
@@ -139,20 +131,3 @@ class _EditarUsuarioState extends State<EditarUsuario> {
     );
   }
 }
-
-// class AppBarSimples extends StatelessWidget implements PreferredSizeWidget {
-//   const AppBarSimples({
-//     super.key,
-//   });
-
-//   @override
-//   Size get preferredSize => const Size.fromHeight(0);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return AppBar(
-//       backgroundColor: azul1,
-//       toolbarHeight: 0,
-//     );
-//   }
-// }

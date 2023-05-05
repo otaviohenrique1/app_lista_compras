@@ -1,5 +1,3 @@
-import 'package:app_lista_compras/models/produto_model.dart';
-import 'package:app_lista_compras/utils/data_teste.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/campo_checkbox.dart';
@@ -9,6 +7,8 @@ import 'package:app_lista_compras/components/campo_texto.dart';
 import 'package:app_lista_compras/styles/listas.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/utils/validator.dart';
+import 'package:app_lista_compras/utils/produto_data.dart';
+import 'package:app_lista_compras/models/produto_model.dart';
 
 class EditarProduto extends StatefulWidget {
   const EditarProduto({
@@ -45,18 +45,8 @@ class _EditarProdutoState extends State<EditarProduto> {
 
   @override
   Widget build(BuildContext context) {
-    ProdutoModel produto = produtoTeste2.firstWhere(
-      (item) => item.id == widget.id,
-      orElse: () => ProdutoModel(
-        id: 0,
-        nome: "",
-        quantidade: 0,
-        unidade: "",
-        categoria: "",
-        descricao: "",
-        ativo: true,
-      ),
-    );
+    ProdutoData produtoData = ProdutoData();
+    ProdutoModel produto = produtoData.buscaProduto(widget.id);
 
     _nomeController.text = produto.nome;
     _quantidadeController.text = produto.quantidade.toString();
