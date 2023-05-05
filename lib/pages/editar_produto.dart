@@ -1,5 +1,6 @@
+import 'package:app_lista_compras/models/produto_model.dart';
+import 'package:app_lista_compras/utils/data_teste.dart';
 import 'package:flutter/material.dart';
-import 'package:app_lista_compras/pages/homepage.dart';
 import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/campo_checkbox.dart';
 import 'package:app_lista_compras/components/select.dart';
@@ -9,41 +10,64 @@ import 'package:app_lista_compras/styles/listas.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/utils/validator.dart';
 
-class NovoProduto extends StatefulWidget {
-  const NovoProduto({super.key});
+class EditarProduto extends StatefulWidget {
+  const EditarProduto({
+    super.key,
+    required this.id,
+  });
+
+  final int id;
 
   @override
-  State<NovoProduto> createState() => _NovoProdutoState();
+  State<EditarProduto> createState() => _EditarProdutoState();
 }
 
-class _NovoProdutoState extends State<NovoProduto> {
+class _EditarProdutoState extends State<EditarProduto> {
   var formKey = GlobalKey<FormState>();
   final TextEditingController _nomeController = TextEditingController();
-  // final TextEditingController _precoController = TextEditingController();
   final TextEditingController _categoriaController = TextEditingController();
   final TextEditingController _quantidadeController = TextEditingController();
   final TextEditingController _descricaoController = TextEditingController();
 
-  String dropdownValueUnidadeQuantidade = unidadeQuantidade.first;
-
   @override
   void dispose() {
     _nomeController.dispose();
-    // _precoController.dispose();
     _categoriaController.dispose();
     _quantidadeController.dispose();
     _descricaoController.dispose();
     super.dispose();
   }
 
-  bool isSelected = true;
+  // String dropdownValueUnidadeQuantidade = unidadeQuantidade.first;
+
+  // bool isSelected = true;
   // bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
+    Produto produto = produtoTeste2.firstWhere(
+      (item) => item.id == widget.id,
+      orElse: () => Produto(
+        id: 0,
+        nome: "",
+        quantidade: 0,
+        unidade: "",
+        categoria: "",
+        descricao: "",
+        ativo: true,
+      ),
+    );
+
+    _nomeController.text = produto.nome;
+    _quantidadeController.text = produto.quantidade.toString();
+    _categoriaController.text = produto.categoria;
+    _descricaoController.text = produto.descricao;
+    bool isSelected = produto.ativo;
+    String dropdownValueUnidadeQuantidade = produto.unidade;
+
     return Scaffold(
       appBar: const AppBarHeader(
-        titulo: "Novo produto",
+        titulo: "Editar produto",
         exibeBusca: true,
       ),
       body: SingleChildScrollView(
@@ -62,16 +86,6 @@ class _NovoProdutoState extends State<NovoProduto> {
                   validator: validaCampoVazio,
                   obscureText: false,
                 ),
-                // const SizedBox(height: 24),
-                // CampoTexto(
-                //   label: "Preço (R\$)",
-                //   hintText: "Insira o preço do produto",
-                //   controller: _precoController,
-                //   exibeLabel: true,
-                //   keyboardType: TextInputType.number,
-                //   obscureText: false,
-                //   validator: validaCampoVazio,
-                // ),
                 const SizedBox(height: 24),
                 CampoTexto(
                   label: "Categoria",
@@ -125,12 +139,12 @@ class _NovoProdutoState extends State<NovoProduto> {
                   keyboardType: TextInputType.text,
                   obscureText: false,
                   validator: validaCampoVazio,
+                  maxLines: 10,
                 ),
                 const SizedBox(height: 24),
                 CampoCheckbox(
                   item: CheckboxModel(
                     texto: "Ativo",
-                    // texto: "Incluir na lista?",
                     checked: isSelected,
                   ),
                 ),
@@ -138,10 +152,8 @@ class _NovoProdutoState extends State<NovoProduto> {
                 Botao(
                   onPressed: () {
                     if (formKey.currentState!.validate()) {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const Homepage()));
+                      // setState(() {});
+                      Navigator.pop(context);
                     }
                   },
                   label: "Salvar",

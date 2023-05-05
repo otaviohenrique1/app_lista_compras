@@ -52,3 +52,11 @@ String? validaRepitaSenha(
   }
   return null;
 }
+
+String? validaSelect(
+    {required String? value, required String primeiroValorSelect}) {
+  if (value == null || value == primeiroValorSelect) {
+    return "Valor inválido";
+  }
+  return null;
+}

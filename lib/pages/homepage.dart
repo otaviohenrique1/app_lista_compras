@@ -16,19 +16,23 @@ class _HomepageState extends State<Homepage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const AppBarHeader(titulo: "Lista"),
+      appBar: const AppBarHeader(
+        titulo: "Lista",
+        exibeBusca: true,
+      ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16),
+        // padding: const EdgeInsets.symmetric(horizontal: 16),
         child: ListView.builder(
           padding: const EdgeInsets.symmetric(vertical: 24),
           // padding: const EdgeInsets.symmetric(vertical: 24),
-          itemCount: listaTeste.length,
+          itemCount: produtoTeste2.length,
           itemBuilder: (context, index) {
             return ListaItem(
-              id: index,
-              nome: listaTeste[index],
-              quantidade: num.parse(listaTeste[index]),
-              unidade: listaTeste[index],
+              id: produtoTeste2[index].id,
+              nome: produtoTeste2[index].nome,
+              quantidade: produtoTeste2[index].quantidade,
+              unidade: produtoTeste2[index].unidade,
             );
           },
         ),
