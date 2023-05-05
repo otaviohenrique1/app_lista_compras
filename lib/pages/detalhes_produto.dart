@@ -22,9 +22,9 @@ class DetalhesProduto extends StatefulWidget {
 class _DetalhesProdutoState extends State<DetalhesProduto> {
   @override
   Widget build(BuildContext context) {
-    Produto produto = produtoTeste2.firstWhere(
+    ProdutoModel produto = produtoTeste2.firstWhere(
       (item) => item.id == widget.id,
-      orElse: () => Produto(
+      orElse: () => ProdutoModel(
         id: 0,
         nome: "nome",
         quantidade: 0,

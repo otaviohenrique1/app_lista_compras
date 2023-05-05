@@ -1,5 +1,5 @@
-class Produto {
-  Produto({
+class ProdutoModel {
+  ProdutoModel({
     required this.id,
     required this.nome,
     required this.quantidade,

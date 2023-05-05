@@ -30,14 +30,14 @@ Map<String, dynamic> usuarioTeste2 = {
   "senha": "0123456789",
 };
 
-List<Usuario> usuarioTeste3 = [
-  Usuario(
+List<UsuarioModel> usuarioTeste3 = [
+  UsuarioModel(
     id: 1,
     nome: "Usuario",
     email: "usuario@email.com",
     senha: "0123456789",
   ),
-  Usuario(
+  UsuarioModel(
     id: 2,
     nome: "Usuario2",
     email: "usuario2@email.com",
@@ -45,7 +45,7 @@ List<Usuario> usuarioTeste3 = [
   ),
 ];
 
-Usuario usuarioTeste4 = Usuario(
+UsuarioModel usuarioTeste4 = UsuarioModel(
   id: 1,
   nome: "Usuario",
   email: "usuario@email.com",
@@ -63,8 +63,8 @@ Map<String, dynamic> produtoTeste = {
   "ativo": true,
 };
 
-List<Produto> produtoTeste2 = [
-  Produto(
+List<ProdutoModel> produtoTeste2 = [
+  ProdutoModel(
     id: 1,
     nome: "Leite",
     quantidade: 30,
@@ -74,7 +74,7 @@ List<Produto> produtoTeste2 = [
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident neque voluptates quo ipsam dignissimos sed aliquid delectus obcaecati dolorum nostrum itaque fuga, odit laboriosam ipsa quibusdam eius esse a numquam.",
     ativo: true,
   ),
-  Produto(
+  ProdutoModel(
     id: 2,
     nome: "Coca-cola",
     quantidade: 12,
@@ -84,7 +84,7 @@ List<Produto> produtoTeste2 = [
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident neque voluptates quo ipsam dignissimos sed aliquid delectus obcaecati dolorum nostrum itaque fuga, odit laboriosam ipsa quibusdam eius esse a numquam.",
     ativo: true,
   ),
-  Produto(
+  ProdutoModel(
     id: 3,
     nome: "Mortadela",
     quantidade: 500,
@@ -94,7 +94,7 @@ List<Produto> produtoTeste2 = [
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident neque voluptates quo ipsam dignissimos sed aliquid delectus obcaecati dolorum nostrum itaque fuga, odit laboriosam ipsa quibusdam eius esse a numquam.",
     ativo: true,
   ),
-  Produto(
+  ProdutoModel(
     id: 4,
     nome: "Presunto",
     quantidade: 600,
@@ -104,7 +104,7 @@ List<Produto> produtoTeste2 = [
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident neque voluptates quo ipsam dignissimos sed aliquid delectus obcaecati dolorum nostrum itaque fuga, odit laboriosam ipsa quibusdam eius esse a numquam.",
     ativo: true,
   ),
-  Produto(
+  ProdutoModel(
     id: 5,
     nome: "Queijo",
     quantidade: 600,
@@ -114,7 +114,7 @@ List<Produto> produtoTeste2 = [
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident neque voluptates quo ipsam dignissimos sed aliquid delectus obcaecati dolorum nostrum itaque fuga, odit laboriosam ipsa quibusdam eius esse a numquam.",
     ativo: true,
   ),
-  Produto(
+  ProdutoModel(
     id: 6,
     nome: "Ovo de páscoa",
     quantidade: 10,
@@ -124,7 +124,7 @@ List<Produto> produtoTeste2 = [
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident neque voluptates quo ipsam dignissimos sed aliquid delectus obcaecati dolorum nostrum itaque fuga, odit laboriosam ipsa quibusdam eius esse a numquam.",
     ativo: true,
   ),
-  Produto(
+  ProdutoModel(
     id: 7,
     nome: "Tomate",
     quantidade: 1,
@@ -134,7 +134,7 @@ List<Produto> produtoTeste2 = [
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident neque voluptates quo ipsam dignissimos sed aliquid delectus obcaecati dolorum nostrum itaque fuga, odit laboriosam ipsa quibusdam eius esse a numquam.",
     ativo: true,
   ),
-  Produto(
+  ProdutoModel(
     id: 8,
     nome: "Laranja",
     quantidade: 2,
@@ -144,7 +144,7 @@ List<Produto> produtoTeste2 = [
         "Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident neque voluptates quo ipsam dignissimos sed aliquid delectus obcaecati dolorum nostrum itaque fuga, odit laboriosam ipsa quibusdam eius esse a numquam.",
     ativo: true,
   ),
-  Produto(
+  ProdutoModel(
     id: 9,
     nome: "Maçã",
     quantidade: 3,
@@ -213,7 +213,7 @@ List<Map<String, dynamic>> produtoTeste3 = [
   },
 ];
 
-Produto produtoTeste4 = Produto(
+ProdutoModel produtoTeste4 = ProdutoModel(
   id: 1,
   nome: "Leite",
   quantidade: 30,

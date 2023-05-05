@@ -21,9 +21,9 @@ class DetalhesUsuario extends StatefulWidget {
 class _DetalhesUsuarioState extends State<DetalhesUsuario> {
   @override
   Widget build(BuildContext context) {
-    Usuario usuario = usuarioTeste3.firstWhere(
+    UsuarioModel usuario = usuarioTeste3.firstWhere(
       (item) => item.id == widget.id,
-      orElse: () => Usuario(
+      orElse: () => UsuarioModel(
         id: 0,
         nome: "",
         email: "",

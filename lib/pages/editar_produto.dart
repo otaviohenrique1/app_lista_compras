@@ -45,9 +45,9 @@ class _EditarProdutoState extends State<EditarProduto> {
 
   @override
   Widget build(BuildContext context) {
-    Produto produto = produtoTeste2.firstWhere(
+    ProdutoModel produto = produtoTeste2.firstWhere(
       (item) => item.id == widget.id,
-      orElse: () => Produto(
+      orElse: () => ProdutoModel(
         id: 0,
         nome: "",
         quantidade: 0,

@@ -1,6 +1,5 @@
-import 'package:app_lista_compras/pages/detalhes_produto.dart';
-import 'package:app_lista_compras/pages/detalhes_usuario.dart';
 import 'package:flutter/material.dart';
+import 'package:app_lista_compras/pages/detalhes_usuario.dart';
 import 'package:app_lista_compras/pages/busca.dart';
 import 'package:app_lista_compras/pages/login.dart';
 import 'package:app_lista_compras/utils/data_teste.dart';
