@@ -9,6 +9,7 @@ import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/utils/validator.dart';
 import 'package:app_lista_compras/utils/produto_data.dart';
 import 'package:app_lista_compras/models/produto_model.dart';
+import 'package:provider/provider.dart';
 
 class EditarProduto extends StatefulWidget {
   const EditarProduto({
@@ -45,8 +46,8 @@ class _EditarProdutoState extends State<EditarProduto> {
 
   @override
   Widget build(BuildContext context) {
-    ProdutoData produtoData = ProdutoData();
-    ProdutoModel produto = produtoData.buscaProduto(widget.id);
+    ProdutoData2 listTypes = Provider.of<ProdutoData2>(context, listen: false);
+    ProdutoModel produto = listTypes.buscaProduto(widget.id);
 
     _nomeController.text = produto.nome;
     _quantidadeController.text = produto.quantidade.toString();
@@ -139,29 +140,32 @@ class _EditarProdutoState extends State<EditarProduto> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                Botao(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      setState(() {
-                        produtoData.editarProduto(
-                          widget.id,
-                          ProdutoModel(
-                            id: widget.id,
-                            nome: _nomeController.text,
-                            quantidade: num.parse(_quantidadeController.text),
-                            unidade: dropdownValueUnidadeQuantidade,
-                            categoria: _categoriaController.text,
-                            descricao: _descricaoController.text,
-                            ativo: isSelected,
-                          ),
-                        );
-                      });
-                      Navigator.pop(context);
-                    }
+                Consumer(
+                  builder: (BuildContext context, ProdutoData2 lista,
+                      Widget? child) {
+                    return Botao(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          lista.editarProduto(
+                            widget.id,
+                            ProdutoModel(
+                              id: widget.id,
+                              nome: _nomeController.text,
+                              quantidade: num.parse(_quantidadeController.text),
+                              unidade: dropdownValueUnidadeQuantidade,
+                              categoria: _categoriaController.text,
+                              descricao: _descricaoController.text,
+                              ativo: isSelected,
+                            ),
+                          );
+                          Navigator.pop(context);
+                        }
+                      },
+                      label: "Salvar",
+                      backgroundColor: azul1,
+                      fontColor: branco,
+                    );
                   },
-                  label: "Salvar",
-                  backgroundColor: azul1,
-                  fontColor: branco,
                 ),
               ],
             ),

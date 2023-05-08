@@ -21,7 +21,7 @@ class _HomepageState extends State<Homepage> {
         titulo: "Lista",
         exibeBusca: true,
       ),
-      body: Consumer(
+      body: Consumer<ProdutoData2>(
         builder: (BuildContext context, ProdutoData2 lista, Widget? widget) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),

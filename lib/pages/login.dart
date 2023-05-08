@@ -12,6 +12,7 @@ import 'package:app_lista_compras/pages/novo_usuario.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/styles/fonts.dart';
 import 'package:app_lista_compras/utils/validator.dart';
+import 'package:provider/provider.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -38,10 +39,6 @@ class _LoginState extends State<Login> {
 
     return Scaffold(
       appBar: const AppBarSimples(),
-      // appBar: AppBar(
-      //   backgroundColor: azul1,
-      //   toolbarHeight: 0,
-      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.all(24),
@@ -91,66 +88,69 @@ class _LoginState extends State<Login> {
                   validator: validaSenha,
                 ),
                 const SizedBox(height: 24),
-                Botao(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      UsuarioModel? usuarioBuscado = usuarioData.validaLogin(
-                        email: _emailController.text,
-                        senha: _senhaController.text,
-                      );
-
-                      if (usuarioBuscado != null) {
-                        /* enviar o usuario */
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const Homepage(),
-                          ),
+                Consumer(builder:
+                    (BuildContext context, UsuarioData2 lista, Widget? widget) {
+                  return Botao(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        UsuarioModel? usuarioBuscado = lista.validaLogin(
+                          email: _emailController.text,
+                          senha: _senhaController.text,
                         );
-                      } else {
-                        // ScaffoldMessenger.of(context).showSnackBar(
-                        //   const SnackBar(
-                        //     content: Text("Criando uma nova tarefa"),
-                        //   ),
-                        // );
-                        showDialog<String>(
-                          context: context,
-                          builder: (BuildContext context) => AlertDialog(
-                            title: const Text("Erro!"),
-                            content: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text("E-mail ou senha inválidos"),
-                              ],
+
+                        if (usuarioBuscado != null) {
+                          /* enviar o usuario */
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const Homepage(),
                             ),
-                            icon: const Icon(
-                              Icons.warning_amber_rounded,
-                              size: 64,
-                            ),
-                            iconColor: Colors.red,
-                            actions: <Widget>[
-                              TextButton(
-                                onPressed: () => Navigator.pop(context),
-                                child: const Text(
-                                  'Fechar',
-                                  style: TextStyle(
-                                    color: Colors.red,
-                                    fontFamily: fontFamily,
-                                    fontWeight: fontWeightRegular,
-                                    fontSize: 14,
+                          );
+                        } else {
+                          // ScaffoldMessenger.of(context).showSnackBar(
+                          //   const SnackBar(
+                          //     content: Text("Criando uma nova tarefa"),
+                          //   ),
+                          // );
+                          showDialog<String>(
+                            context: context,
+                            builder: (BuildContext context) => AlertDialog(
+                              title: const Text("Erro!"),
+                              content: const Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text("E-mail ou senha inválidos"),
+                                ],
+                              ),
+                              icon: const Icon(
+                                Icons.warning_amber_rounded,
+                                size: 64,
+                              ),
+                              iconColor: Colors.red,
+                              actions: <Widget>[
+                                TextButton(
+                                  onPressed: () => Navigator.pop(context),
+                                  child: const Text(
+                                    'Fechar',
+                                    style: TextStyle(
+                                      color: Colors.red,
+                                      fontFamily: fontFamily,
+                                      fontWeight: fontWeightRegular,
+                                      fontSize: 14,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                        );
+                              ],
+                            ),
+                          );
+                        }
                       }
-                    }
-                  },
-                  label: "Entrar",
-                  backgroundColor: azul1,
-                  fontColor: branco,
-                ),
+                    },
+                    label: "Entrar",
+                    backgroundColor: azul1,
+                    fontColor: branco,
+                  );
+                }),
                 BotaoTexto(
                   onPressed: () {
                     Navigator.push(

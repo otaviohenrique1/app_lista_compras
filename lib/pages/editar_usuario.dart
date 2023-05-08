@@ -6,6 +6,7 @@ import 'package:app_lista_compras/utils/usuario_data.dart';
 import 'package:app_lista_compras/utils/validator.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/models/usuario_model.dart';
+import 'package:provider/provider.dart';
 
 class EditarUsuario extends StatefulWidget {
   const EditarUsuario({
@@ -37,8 +38,8 @@ class _EditarUsuarioState extends State<EditarUsuario> {
 
   @override
   Widget build(BuildContext context) {
-    UsuarioData usuarioData = UsuarioData();
-    UsuarioModel usuario = usuarioData.buscaUsuario(widget.id);
+    UsuarioData2 listTypes = Provider.of<UsuarioData2>(context, listen: false);
+    UsuarioModel usuario = listTypes.buscaUsuario(widget.id);
 
     _nomeController.text = usuario.nome;
     _emailController.text = usuario.email;
@@ -97,26 +98,29 @@ class _EditarUsuarioState extends State<EditarUsuario> {
                   validator: validaSenha,
                 ),
                 const SizedBox(height: 32),
-                Botao(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      setState(() {
-                        usuarioData.editarUsuario(
-                          widget.id,
-                          UsuarioModel(
-                            id: widget.id,
-                            nome: _nomeController.text,
-                            email: _emailController.text,
-                            senha: _senhaController.text,
-                          ),
-                        );
-                        Navigator.pop(context);
-                      });
-                    }
+                Consumer(
+                  builder: (BuildContext context, UsuarioData2 lista,
+                      Widget? child) {
+                    return Botao(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          lista.editarUsuario(
+                            widget.id,
+                            UsuarioModel(
+                              id: widget.id,
+                              nome: _nomeController.text,
+                              email: _emailController.text,
+                              senha: _senhaController.text,
+                            ),
+                          );
+                          Navigator.pop(context);
+                        }
+                      },
+                      label: "Salvar",
+                      backgroundColor: azul1,
+                      fontColor: branco,
+                    );
                   },
-                  label: "Salvar",
-                  backgroundColor: azul1,
-                  fontColor: branco,
                 ),
               ],
             ),

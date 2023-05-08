@@ -7,10 +7,21 @@ import 'package:app_lista_compras/styles/fonts.dart';
 import 'package:app_lista_compras/utils/helpers.dart';
 import 'package:provider/provider.dart';
 
-enum ItemMenuEnum { exibir, editar, remover }
+enum ItemMenu2Enum { exibir, editar, remover }
 
-class ListaItem extends StatefulWidget {
-  const ListaItem({
+class MenuState with ChangeNotifier {
+  ItemMenu2Enum _selectedOption = ItemMenu2Enum.exibir;
+
+  ItemMenu2Enum get selectedOption => _selectedOption;
+
+  set selectedOption(ItemMenu2Enum option) {
+    _selectedOption = option;
+    notifyListeners();
+  }
+}
+
+class ListaItem2 extends StatefulWidget {
+  const ListaItem2({
     super.key,
     required this.id,
     required this.nome,
@@ -24,13 +35,13 @@ class ListaItem extends StatefulWidget {
   final String unidade;
 
   @override
-  State<ListaItem> createState() => _ListaItemState();
+  State<ListaItem2> createState() => _ListaItem2State();
 }
 
-class _ListaItemState extends State<ListaItem> {
+class _ListaItem2State extends State<ListaItem2> {
   @override
   Widget build(BuildContext context) {
-    ItemMenuEnum? selectedMenu;
+    ItemMenu2Enum? selectedMenu;
 
     String idProduto = widget.id;
     String nome = widget.nome;
@@ -54,17 +65,17 @@ class _ListaItemState extends State<ListaItem> {
           side: const BorderSide(width: 2, color: cinza1),
           borderRadius: BorderRadius.circular(2),
         ),
-        trailing: PopupMenuButton<ItemMenuEnum>(
+        trailing: PopupMenuButton<ItemMenu2Enum>(
           initialValue: selectedMenu,
           icon: const Icon(
             Icons.more_vert,
             color: preto,
             size: 24,
           ),
-          onSelected: (ItemMenuEnum item) {
+          onSelected: (ItemMenu2Enum item) {
             setState(() {
               selectedMenu = item;
-              if (item == ItemMenuEnum.exibir) {
+              if (item == ItemMenu2Enum.exibir) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
@@ -73,14 +84,14 @@ class _ListaItemState extends State<ListaItem> {
                     },
                   ),
                 );
-              } else if (item == ItemMenuEnum.editar) {
+              } else if (item == ItemMenu2Enum.editar) {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => EditarProduto(id: idProduto),
                   ),
                 );
-              } else if (item == ItemMenuEnum.remover) {
+              } else if (item == ItemMenu2Enum.remover) {
                 showDialog<String>(
                   context: context,
                   builder: (BuildContext context) => AlertDialog(
@@ -135,17 +146,18 @@ class _ListaItemState extends State<ListaItem> {
               }
             });
           },
-          itemBuilder: (BuildContext context) => <PopupMenuEntry<ItemMenuEnum>>[
-            const PopupMenuItem<ItemMenuEnum>(
-              value: ItemMenuEnum.exibir,
+          itemBuilder: (BuildContext context) =>
+              <PopupMenuEntry<ItemMenu2Enum>>[
+            const PopupMenuItem<ItemMenu2Enum>(
+              value: ItemMenu2Enum.exibir,
               child: Text('Exibir', style: style16Regular),
             ),
-            const PopupMenuItem<ItemMenuEnum>(
-              value: ItemMenuEnum.editar,
+            const PopupMenuItem<ItemMenu2Enum>(
+              value: ItemMenu2Enum.editar,
               child: Text('Editar', style: style16Regular),
             ),
-            const PopupMenuItem<ItemMenuEnum>(
-              value: ItemMenuEnum.remover,
+            const PopupMenuItem<ItemMenu2Enum>(
+              value: ItemMenu2Enum.remover,
               child: Text('Remover', style: style16Regular),
             ),
           ],

@@ -7,6 +7,7 @@ import 'package:app_lista_compras/components/botao.dart';
 import 'package:app_lista_compras/utils/usuario_data.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/models/usuario_model.dart';
+import 'package:provider/provider.dart';
 
 class DetalhesUsuario extends StatefulWidget {
   const DetalhesUsuario({
@@ -23,8 +24,8 @@ class DetalhesUsuario extends StatefulWidget {
 class _DetalhesUsuarioState extends State<DetalhesUsuario> {
   @override
   Widget build(BuildContext context) {
-    UsuarioData usuarioData = UsuarioData();
-    UsuarioModel usuario = usuarioData.buscaUsuario(widget.id);
+    UsuarioData2 listTypes = Provider.of<UsuarioData2>(context, listen: false);
+    UsuarioModel usuario = listTypes.buscaUsuario(widget.id);
 
     return Scaffold(
       appBar: const AppBarHeader(

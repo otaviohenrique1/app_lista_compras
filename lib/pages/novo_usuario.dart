@@ -9,6 +9,7 @@ import 'package:app_lista_compras/components/titulo.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/styles/fonts.dart';
 import 'package:app_lista_compras/utils/validator.dart';
+import 'package:provider/provider.dart';
 
 class NovoUsuario extends StatefulWidget {
   const NovoUsuario({super.key});
@@ -35,8 +36,6 @@ class _NovoUsuarioState extends State<NovoUsuario> {
 
   @override
   Widget build(BuildContext context) {
-    UsuarioData usuarioData = UsuarioData();
-
     return Scaffold(
       appBar: const AppBarSimples(),
       body: SingleChildScrollView(
@@ -94,23 +93,26 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                   validator: validaSenha,
                 ),
                 const SizedBox(height: 32),
-                Botao(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      setState(() {
-                        usuarioData.criarUsuario(UsuarioModel(
-                          id: geraUuid(),
-                          nome: _nomeController.text,
-                          email: _emailController.text,
-                          senha: _senhaController.text,
-                        ));
-                      });
-                      Navigator.pop(context);
-                    }
+                Consumer(
+                  builder: (BuildContext context, UsuarioData2 lista,
+                      Widget? widget) {
+                    return Botao(
+                      onPressed: () {
+                        if (formKey.currentState!.validate()) {
+                          lista.criarUsuario(UsuarioModel(
+                            id: geraUuid(),
+                            nome: _nomeController.text,
+                            email: _emailController.text,
+                            senha: _senhaController.text,
+                          ));
+                          Navigator.pop(context);
+                        }
+                      },
+                      label: "Entrar",
+                      backgroundColor: azul1,
+                      fontColor: branco,
+                    );
                   },
-                  label: "Entrar",
-                  backgroundColor: azul1,
-                  fontColor: branco,
                 ),
                 const SizedBox(height: 8),
                 Botao(

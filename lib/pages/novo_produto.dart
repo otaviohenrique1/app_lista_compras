@@ -1,8 +1,5 @@
-import 'package:app_lista_compras/models/produto_model.dart';
-import 'package:app_lista_compras/utils/helpers.dart';
-import 'package:app_lista_compras/utils/produto_data.dart';
 import 'package:flutter/material.dart';
-import 'package:app_lista_compras/pages/homepage.dart';
+import 'package:provider/provider.dart';
 import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/campo_checkbox.dart';
 import 'package:app_lista_compras/components/select.dart';
@@ -10,7 +7,10 @@ import 'package:app_lista_compras/components/botao.dart';
 import 'package:app_lista_compras/components/campo_texto.dart';
 import 'package:app_lista_compras/styles/listas.dart';
 import 'package:app_lista_compras/styles/colors.dart';
+import 'package:app_lista_compras/utils/helpers.dart';
+import 'package:app_lista_compras/utils/produto_data.dart';
 import 'package:app_lista_compras/utils/validator.dart';
+import 'package:app_lista_compras/models/produto_model.dart';
 
 class NovoProduto extends StatefulWidget {
   const NovoProduto({super.key});
@@ -22,7 +22,6 @@ class NovoProduto extends StatefulWidget {
 class _NovoProdutoState extends State<NovoProduto> {
   var formKey = GlobalKey<FormState>();
   final TextEditingController _nomeController = TextEditingController();
-  // final TextEditingController _precoController = TextEditingController();
   final TextEditingController _categoriaController = TextEditingController();
   final TextEditingController _quantidadeController = TextEditingController();
   final TextEditingController _descricaoController = TextEditingController();
@@ -32,7 +31,6 @@ class _NovoProdutoState extends State<NovoProduto> {
   @override
   void dispose() {
     _nomeController.dispose();
-    // _precoController.dispose();
     _categoriaController.dispose();
     _quantidadeController.dispose();
     _descricaoController.dispose();
@@ -40,12 +38,9 @@ class _NovoProdutoState extends State<NovoProduto> {
   }
 
   bool isSelected = true;
-  // bool isSelected = false;
 
   @override
   Widget build(BuildContext context) {
-    ProdutoData produtoData = ProdutoData();
-
     return Scaffold(
       appBar: const AppBarHeader(
         titulo: "Novo produto",
@@ -67,16 +62,6 @@ class _NovoProdutoState extends State<NovoProduto> {
                   validator: validaCampoVazio,
                   obscureText: false,
                 ),
-                // const SizedBox(height: 24),
-                // CampoTexto(
-                //   label: "Preço (R\$)",
-                //   hintText: "Insira o preço do produto",
-                //   controller: _precoController,
-                //   exibeLabel: true,
-                //   keyboardType: TextInputType.number,
-                //   obscureText: false,
-                //   validator: validaCampoVazio,
-                // ),
                 const SizedBox(height: 24),
                 CampoTexto(
                   label: "Categoria",
@@ -140,11 +125,12 @@ class _NovoProdutoState extends State<NovoProduto> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                Botao(
-                  onPressed: () {
-                    if (formKey.currentState!.validate()) {
-                      setState(() {
-                        produtoData.criarProduto(ProdutoModel(
+                Consumer(builder:
+                    (BuildContext context, ProdutoData2 lista, Widget? widget) {
+                  return Botao(
+                    onPressed: () {
+                      if (formKey.currentState!.validate()) {
+                        lista.criarProduto(ProdutoModel(
                           id: geraUuid(),
                           nome: _nomeController.text,
                           quantidade: num.parse(_quantidadeController.text),
@@ -153,14 +139,14 @@ class _NovoProdutoState extends State<NovoProduto> {
                           descricao: _descricaoController.text,
                           ativo: isSelected,
                         ));
-                      });
-                      Navigator.pop(context);
-                    }
-                  },
-                  label: "Salvar",
-                  backgroundColor: azul1,
-                  fontColor: branco,
-                ),
+                        Navigator.pop(context);
+                      }
+                    },
+                    label: "Salvar",
+                    backgroundColor: azul1,
+                    fontColor: branco,
+                  );
+                }),
               ],
             ),
           ),
