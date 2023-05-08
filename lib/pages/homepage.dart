@@ -3,7 +3,8 @@ import 'package:app_lista_compras/pages/novo_produto.dart';
 import 'package:app_lista_compras/components/lista_item.dart';
 import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/styles/colors.dart';
-import 'package:app_lista_compras/utils/data_teste.dart';
+import 'package:app_lista_compras/utils/produto_data.dart';
+import 'package:provider/provider.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -20,22 +21,24 @@ class _HomepageState extends State<Homepage> {
         titulo: "Lista",
         exibeBusca: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 16),
-        // padding: const EdgeInsets.symmetric(horizontal: 16),
-        child: ListView.builder(
-          padding: const EdgeInsets.symmetric(vertical: 24),
-          // padding: const EdgeInsets.symmetric(vertical: 24),
-          itemCount: produtoTeste.length,
-          itemBuilder: (context, index) {
-            return ListaItem(
-              id: produtoTeste[index].id,
-              nome: produtoTeste[index].nome,
-              quantidade: produtoTeste[index].quantidade,
-              unidade: produtoTeste[index].unidade,
-            );
-          },
-        ),
+      body: Consumer(
+        builder: (BuildContext context, ProdutoData2 lista, Widget? widget) {
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: ListView.builder(
+              padding: const EdgeInsets.symmetric(vertical: 24),
+              itemCount: lista.produtos.length,
+              itemBuilder: (context, index) {
+                return ListaItem(
+                  id: lista.produtos[index].id,
+                  nome: lista.produtos[index].nome,
+                  quantidade: lista.produtos[index].quantidade,
+                  unidade: lista.produtos[index].unidade,
+                );
+              },
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

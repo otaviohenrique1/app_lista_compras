@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:app_lista_compras/models/usuario_model.dart';
 import 'package:app_lista_compras/utils/data_teste.dart';
 
@@ -53,6 +54,71 @@ class UsuarioData {
         return usuario;
       }
     }
+    return null;
+  }
+}
+
+class UsuarioData2 extends ChangeNotifier {
+  UsuarioData2({required this.usuarios});
+
+  List<UsuarioModel> usuarios = [];
+
+  UsuarioModel buscaUsuario(String id) {
+    UsuarioModel resultado = usuarios.firstWhere(
+      (item) => item.id == id,
+      orElse: () => UsuarioModel(
+        id: "",
+        nome: "",
+        email: "",
+        senha: "",
+      ),
+    );
+    notifyListeners();
+    return resultado;
+  }
+
+  void criarUsuario(UsuarioModel usuario) {
+    usuarios.add(usuario);
+    notifyListeners();
+  }
+
+  void removerUsuario(String id) {
+    usuarioTeste.removeWhere((item) => item.id == id);
+    notifyListeners();
+  }
+
+  void editarUsuario(String id, UsuarioModel novoUsuario) {
+    UsuarioModel usuario = usuarios.firstWhere((item) => item.id == id);
+    usuario.nome = novoUsuario.nome;
+    usuario.nome = novoUsuario.nome;
+    usuario.email = novoUsuario.email;
+    usuario.senha = novoUsuario.senha;
+    notifyListeners();
+  }
+
+  UsuarioModel? validaLogin({
+    required String email,
+    required String senha,
+  }) {
+    // usuarios.firstWhere((item) {
+    //   bool validaEmail = item.email == email;
+    //   bool validaSenha = item.senha == senha;
+    //   return validaEmail && validaSenha;
+    // });
+
+    // var teste = usuarios.where((item) => item.email == email);
+    // var validaEmail = usuarios.firstWhere((item) => item.email == email);
+    // var validaSenha = usuarios.firstWhere((item) => item.senha == senha);
+
+    for (var usuario in usuarios) {
+      bool validaEmail = usuario.email == email;
+      bool validaSenha = usuario.senha == senha;
+      if (validaEmail && validaSenha) {
+        notifyListeners();
+        return usuario;
+      }
+    }
+    notifyListeners();
     return null;
   }
 }
