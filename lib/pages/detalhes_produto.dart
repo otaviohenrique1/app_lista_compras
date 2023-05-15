@@ -5,7 +5,7 @@ import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/botao.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/models/produto_model.dart';
-import 'package:app_lista_compras/utils/data_teste.dart';
+// import 'package:app_lista_compras/utils/data_teste.dart';
 import 'package:app_lista_compras/utils/helpers.dart';
 import 'package:provider/provider.dart';
 

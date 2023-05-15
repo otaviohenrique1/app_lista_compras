@@ -104,6 +104,7 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                             nome: _nomeController.text,
                             email: _emailController.text,
                             senha: _senhaController.text,
+                            dataCriacao: DateTime.now(),
                           ));
                           Navigator.pop(context);
                         }

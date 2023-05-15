@@ -1,3 +1,4 @@
+import 'package:app_lista_compras/data/usuario_dao.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/models/usuario_model.dart';
 import 'package:app_lista_compras/utils/data_teste.dart';
@@ -11,6 +12,7 @@ class UsuarioData {
         nome: "",
         email: "",
         senha: "",
+        dataCriacao: DateTime.now(),
       ),
     );
 
@@ -71,6 +73,7 @@ class UsuarioData2 extends ChangeNotifier {
         nome: "",
         email: "",
         senha: "",
+        dataCriacao: DateTime.now(),
       ),
     );
     notifyListeners();
@@ -120,5 +123,48 @@ class UsuarioData2 extends ChangeNotifier {
     }
     notifyListeners();
     return null;
+  }
+}
+
+class UsuarioData3 extends ChangeNotifier {
+  UsuarioData3({required List<UsuarioModel> usuarios});
+
+  // ignore: prefer_final_fields
+  List<UsuarioModel> _usuarios = [];
+  List<UsuarioModel> get usuarios1 => _usuarios;
+
+  Future<List<UsuarioModel>> buscaUsuario(String id) {
+    Future<List<UsuarioModel>> resultado =
+        UsuarioDao().buscarUsuarioUsandoID(id);
+    notifyListeners();
+    return resultado;
+  }
+
+  void criarUsuario(UsuarioModel usuario) {
+    UsuarioDao().criarUsuario(usuario);
+    notifyListeners();
+  }
+
+  void removerUsuario(String id) {
+    UsuarioDao().removerUsuario(id);
+    notifyListeners();
+  }
+
+  void editarUsuario(String id, UsuarioModel novoUsuario) {
+    UsuarioDao().atualizarUsuario(novoUsuario, id);
+    notifyListeners();
+  }
+
+  Future<List<UsuarioModel>> validaLogin(
+      {required String email, required String senha}) async {
+    Future<List<UsuarioModel>> resultado =
+        UsuarioDao().loginUsuario(email, senha);
+    // resultado.then((value) {
+    //   return value;
+    // }).catchError((erro) {
+    //   return erro;
+    // });
+    notifyListeners();
+    return resultado;
   }
 }

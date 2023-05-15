@@ -45,6 +45,16 @@ class UsuarioDao {
     return toList(resultado);
   }
 
+  Future<List<UsuarioModel>> loginUsuario(String email, String senha) async {
+    final Database bancoDeDados = await getDatabase();
+    final List<Map<String, dynamic>> resultado = await bancoDeDados.query(
+      _nomeTabela,
+      where: "$_email = ? AND $_senha = ?",
+      whereArgs: [email, senha],
+    );
+    return toList(resultado);
+  }
+
   removerUsuario(String idUsuario) async {
     final Database bancoDeDados = await getDatabase();
     return bancoDeDados

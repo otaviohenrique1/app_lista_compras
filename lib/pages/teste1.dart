@@ -34,7 +34,7 @@ class _Teste1State extends State<Teste1> {
         color: Colors.white,
         child: Column(
           children: [
-            Text("data"),
+            const Text("data"),
             Center(
               child: Consumer<MenuSelecionadoProvider>(
                 builder: (context, menuSelecionado, widget) =>

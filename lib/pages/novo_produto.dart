@@ -41,6 +41,8 @@ class _NovoProdutoState extends State<NovoProduto> {
 
   @override
   Widget build(BuildContext context) {
+    const String idUsuarioLogado = "187726dc-577a-4322-b691-68b0b2435e45";
+
     return Scaffold(
       appBar: const AppBarHeader(
         titulo: "Novo produto",
@@ -138,6 +140,8 @@ class _NovoProdutoState extends State<NovoProduto> {
                           categoria: _categoriaController.text,
                           descricao: _descricaoController.text,
                           ativo: isSelected,
+                          idUsuario: idUsuarioLogado,
+                          dataCriacao: DateTime.now(),
                         ));
                         Navigator.pop(context);
                       }

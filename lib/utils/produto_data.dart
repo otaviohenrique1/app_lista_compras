@@ -14,6 +14,8 @@ class ProdutoData {
         categoria: "",
         descricao: "",
         ativo: true,
+        idUsuario: "",
+        dataCriacao: DateTime.now(),
       ),
     );
 
@@ -55,6 +57,8 @@ class ProdutoData2 extends ChangeNotifier {
         categoria: "",
         descricao: "",
         ativo: true,
+        idUsuario: "",
+        dataCriacao: DateTime.now(),
       ),
     );
     notifyListeners();

@@ -111,6 +111,7 @@ class _EditarUsuarioState extends State<EditarUsuario> {
                               nome: _nomeController.text,
                               email: _emailController.text,
                               senha: _senhaController.text,
+                              dataCriacao: usuario.dataCriacao,
                             ),
                           );
                           Navigator.pop(context);

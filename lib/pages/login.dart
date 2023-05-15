@@ -35,6 +35,7 @@ class _LoginState extends State<Login> {
 
   @override
   Widget build(BuildContext context) {
+    // ignore: unused_local_variable
     UsuarioData usuarioData = UsuarioData();
 
     return Scaffold(
@@ -156,8 +157,7 @@ class _LoginState extends State<Login> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const EsqueciSenha(),
-                      ),
+                          builder: (context) => const EsqueciSenha()),
                     );
                   },
                   label: "Esqueceu sua senha?",
@@ -184,8 +184,7 @@ class _LoginState extends State<Login> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => const NovoUsuario(),
-                          ),
+                              builder: (context) => const NovoUsuario()),
                         );
                       },
                       fontColor: azul1,

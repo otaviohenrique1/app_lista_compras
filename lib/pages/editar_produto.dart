@@ -156,6 +156,8 @@ class _EditarProdutoState extends State<EditarProduto> {
                               categoria: _categoriaController.text,
                               descricao: _descricaoController.text,
                               ativo: isSelected,
+                              idUsuario: produto.idUsuario,
+                              dataCriacao: produto.dataCriacao,
                             ),
                           );
                           Navigator.pop(context);
