@@ -1,3 +1,4 @@
+import 'package:app_lista_compras/pages/teste1.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/models/produto_model.dart';
 import 'package:app_lista_compras/models/usuario_model.dart';
@@ -10,6 +11,8 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
+        ChangeNotifierProvider<MenuSelecionadoProvider>(
+            create: (_) => MenuSelecionadoProvider()),
         ChangeNotifierProvider(
           create: (context) => ProdutoData2(
             produtos: [
@@ -141,7 +144,8 @@ class App extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const Homepage(),
+      home: const Teste1(),
+      // home: const Homepage(),
     );
   }
 }

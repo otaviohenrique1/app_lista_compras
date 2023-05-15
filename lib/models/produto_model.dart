@@ -7,6 +7,8 @@ class ProdutoModel {
     required this.categoria,
     required this.descricao,
     required this.ativo,
+    required this.idUsuario,
+    required this.dataCriacao,
   });
 
   /* final */ String id;
@@ -16,4 +18,6 @@ class ProdutoModel {
   /* final */ String categoria;
   /* final */ String descricao;
   /* final */ bool ativo;
+  /* final */ String idUsuario;
+  /* final */ DateTime dataCriacao;
 }
