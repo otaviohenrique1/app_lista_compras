@@ -1,3 +1,4 @@
+import 'package:app_lista_compras/provider/produto_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/campo_checkbox.dart';
@@ -46,8 +47,9 @@ class _EditarProdutoState extends State<EditarProduto> {
 
   @override
   Widget build(BuildContext context) {
-    ProdutoData2 listTypes = Provider.of<ProdutoData2>(context, listen: false);
-    ProdutoModel produto = listTypes.buscaProduto(widget.id);
+    ProdutoProvider produtoProvider =
+        Provider.of<ProdutoProvider>(context, listen: false);
+    ProdutoModel produto = produtoProvider.findById(widget.id);
 
     _nomeController.text = produto.nome;
     _quantidadeController.text = produto.quantidade.toString();
@@ -141,13 +143,12 @@ class _EditarProdutoState extends State<EditarProduto> {
                 ),
                 const SizedBox(height: 32),
                 Consumer(
-                  builder: (BuildContext context, ProdutoData2 lista,
-                      Widget? child) {
+                  builder: (BuildContext context,
+                      ProdutoProvider produtoProviderConsumer, Widget? child) {
                     return Botao(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          lista.editarProduto(
-                            widget.id,
+                          produtoProviderConsumer.update(
                             ProdutoModel(
                               id: widget.id,
                               nome: _nomeController.text,
@@ -159,6 +160,7 @@ class _EditarProdutoState extends State<EditarProduto> {
                               idUsuario: produto.idUsuario,
                               dataCriacao: produto.dataCriacao,
                             ),
+                            widget.id,
                           );
                           Navigator.pop(context);
                         }

@@ -25,41 +25,41 @@ class ProdutoDao {
   static const String _idUsuario = "idUsuario";
   static const String _dataCriacao = "dataCriacao";
 
-  criarProduto(ProdutoModel produto) async {
+  save(ProdutoModel produto) async {
     final Database bancoDeDados = await getDatabase();
     Map<String, dynamic> produtosMap = toMap(produto);
     return await bancoDeDados.insert(_nomeTabela, produtosMap);
   }
 
-  atualizarProduto(ProdutoModel produto, String idProduto) async {
+  update(ProdutoModel produto, String idProduto) async {
     final Database bancoDeDados = await getDatabase();
     Map<String, dynamic> produtosMap = toMap(produto);
     return await bancoDeDados.update(_nomeTabela, produtosMap,
         where: "$_id = ?", whereArgs: [idProduto]);
   }
 
-  Future<List<ProdutoModel>> buscarTodosProdutos() async {
+  Future<List<ProdutoModel>> findAll() async {
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> resultado =
         await bancoDeDados.query(_nomeTabela);
     return toList(resultado);
   }
 
-  Future<List<ProdutoModel>> buscarProdutoUsandoID(String idProduto) async {
+  Future<List<ProdutoModel>> findByID(String idProduto) async {
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> resultado = await bancoDeDados
         .query(_nomeTabela, where: "$_id = ?", whereArgs: [idProduto]);
     return toList(resultado);
   }
 
-  Future<List<ProdutoModel>> buscarProdutoUsandoNome(String nome) async {
+  Future<List<ProdutoModel>> findByNome(String nome) async {
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> resultado = await bancoDeDados
         .query(_nomeTabela, where: "$_nome = ?", whereArgs: [nome]);
     return toList(resultado);
   }
 
-  removerProduto(String idProduto) async {
+  delete(String idProduto) async {
     final Database bancoDeDados = await getDatabase();
     return bancoDeDados
         .delete(_nomeTabela, where: "$_id = ?", whereArgs: [idProduto]);

@@ -1,4 +1,5 @@
 import 'package:app_lista_compras/models/usuario_model.dart';
+import 'package:app_lista_compras/provider/usuario_provider.dart';
 import 'package:app_lista_compras/utils/helpers.dart';
 import 'package:app_lista_compras/utils/usuario_data.dart';
 import 'package:flutter/material.dart';
@@ -94,12 +95,12 @@ class _NovoUsuarioState extends State<NovoUsuario> {
                 ),
                 const SizedBox(height: 32),
                 Consumer(
-                  builder: (BuildContext context, UsuarioData2 lista,
+                  builder: (BuildContext context, UsuarioProvider lista,
                       Widget? widget) {
                     return Botao(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          lista.criarUsuario(UsuarioModel(
+                          lista.save(UsuarioModel(
                             id: geraUuid(),
                             nome: _nomeController.text,
                             email: _emailController.text,

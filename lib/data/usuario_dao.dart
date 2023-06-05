@@ -18,34 +18,34 @@ class UsuarioDao {
   static const String _senha = "senha";
   static const String _dataCriacao = "dataCriacao";
 
-  criarUsuario(UsuarioModel usuario) async {
+  save(UsuarioModel usuario) async {
     final Database bancoDeDados = await getDatabase();
     Map<String, dynamic> usuariosMap = toMap(usuario);
     return await bancoDeDados.insert(_nomeTabela, usuariosMap);
   }
 
-  atualizarUsuario(UsuarioModel produto, String idProduto) async {
+  update(UsuarioModel produto, String idProduto) async {
     final Database bancoDeDados = await getDatabase();
     Map<String, dynamic> usuariosMap = toMap(produto);
     return await bancoDeDados.update(_nomeTabela, usuariosMap,
         where: "$_id = ?", whereArgs: [idProduto]);
   }
 
-  Future<List<UsuarioModel>> buscarTodosUsuarios() async {
+  Future<List<UsuarioModel>> findAll() async {
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> resultado =
         await bancoDeDados.query(_nomeTabela);
     return toList(resultado);
   }
 
-  Future<List<UsuarioModel>> buscarUsuarioUsandoID(String idUsuario) async {
+  Future<List<UsuarioModel>> findById(String idUsuario) async {
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> resultado = await bancoDeDados
         .query(_nomeTabela, where: "$_id = ?", whereArgs: [idUsuario]);
     return toList(resultado);
   }
 
-  Future<List<UsuarioModel>> loginUsuario(String email, String senha) async {
+  Future<List<UsuarioModel>> login(String email, String senha) async {
     final Database bancoDeDados = await getDatabase();
     final List<Map<String, dynamic>> resultado = await bancoDeDados.query(
       _nomeTabela,
@@ -55,7 +55,7 @@ class UsuarioDao {
     return toList(resultado);
   }
 
-  removerUsuario(String idUsuario) async {
+  delete(String idUsuario) async {
     final Database bancoDeDados = await getDatabase();
     return bancoDeDados
         .delete(_nomeTabela, where: "$_id = ?", whereArgs: [idUsuario]);

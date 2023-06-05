@@ -1,3 +1,4 @@
+import 'package:app_lista_compras/provider/produto_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/campo_checkbox.dart';
@@ -6,6 +7,9 @@ import 'package:app_lista_compras/components/campo_texto.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/styles/listas.dart';
 import 'package:app_lista_compras/utils/validator.dart';
+import 'package:provider/provider.dart';
+
+import '../models/produto_model.dart';
 
 class Busca extends StatefulWidget {
   const Busca({super.key});
@@ -30,6 +34,11 @@ class _BuscaState extends State<Busca> {
 
   @override
   Widget build(BuildContext context) {
+    String nome = _buscaController.text;
+    ProdutoProvider listTypes =
+        Provider.of<ProdutoProvider>(context, listen: false);
+    ProdutoModel usuario = listTypes.findByName(nome);
+
     return Scaffold(
       appBar: const AppBarHeader(
         titulo: "Busca",

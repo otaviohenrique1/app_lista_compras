@@ -134,31 +134,29 @@ class UsuarioData3 extends ChangeNotifier {
   List<UsuarioModel> get usuarios1 => _usuarios;
 
   Future<List<UsuarioModel>> buscaUsuario(String id) {
-    Future<List<UsuarioModel>> resultado =
-        UsuarioDao().buscarUsuarioUsandoID(id);
+    Future<List<UsuarioModel>> resultado = UsuarioDao().findById(id);
     notifyListeners();
     return resultado;
   }
 
   void criarUsuario(UsuarioModel usuario) {
-    UsuarioDao().criarUsuario(usuario);
+    UsuarioDao().save(usuario);
     notifyListeners();
   }
 
   void removerUsuario(String id) {
-    UsuarioDao().removerUsuario(id);
+    UsuarioDao().delete(id);
     notifyListeners();
   }
 
   void editarUsuario(String id, UsuarioModel novoUsuario) {
-    UsuarioDao().atualizarUsuario(novoUsuario, id);
+    UsuarioDao().update(novoUsuario, id);
     notifyListeners();
   }
 
   Future<List<UsuarioModel>> validaLogin(
       {required String email, required String senha}) async {
-    Future<List<UsuarioModel>> resultado =
-        UsuarioDao().loginUsuario(email, senha);
+    Future<List<UsuarioModel>> resultado = UsuarioDao().login(email, senha);
     // resultado.then((value) {
     //   return value;
     // }).catchError((erro) {

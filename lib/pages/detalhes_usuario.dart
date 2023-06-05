@@ -1,10 +1,10 @@
+import 'package:app_lista_compras/provider/usuario_provider.dart';
 import 'package:app_lista_compras/utils/helpers.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/pages/editar_usuario.dart';
 import 'package:app_lista_compras/components/item_detalhes.dart';
 import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/botao.dart';
-import 'package:app_lista_compras/utils/usuario_data.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/models/usuario_model.dart';
 import 'package:provider/provider.dart';
@@ -24,8 +24,9 @@ class DetalhesUsuario extends StatefulWidget {
 class _DetalhesUsuarioState extends State<DetalhesUsuario> {
   @override
   Widget build(BuildContext context) {
-    UsuarioData2 listTypes = Provider.of<UsuarioData2>(context, listen: false);
-    UsuarioModel usuario = listTypes.buscaUsuario(widget.id);
+    UsuarioProvider usuarioProvider =
+        Provider.of<UsuarioProvider>(context, listen: false);
+    UsuarioModel usuario = usuarioProvider.findById(widget.id);
 
     return Scaffold(
       appBar: const AppBarHeader(
@@ -68,6 +69,20 @@ class _DetalhesUsuarioState extends State<DetalhesUsuario> {
                 label: "Editar",
                 backgroundColor: azul1,
                 fontColor: branco,
+              ),
+              Consumer(
+                builder: (BuildContext context,
+                    UsuarioProvider usuarioProviderConsumer, Widget? child) {
+                  return Botao(
+                    onPressed: () {
+                      usuarioProviderConsumer.delete(widget.id);
+                      Navigator.pop(context);
+                    },
+                    label: "Salvar",
+                    backgroundColor: azul1,
+                    fontColor: branco,
+                  );
+                },
               ),
             ],
           ),

@@ -1,3 +1,4 @@
+import 'package:app_lista_compras/provider/produto_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:app_lista_compras/components/appbar.dart';
@@ -127,12 +128,12 @@ class _NovoProdutoState extends State<NovoProduto> {
                   ),
                 ),
                 const SizedBox(height: 32),
-                Consumer(builder:
-                    (BuildContext context, ProdutoData2 lista, Widget? widget) {
+                Consumer(builder: (BuildContext context, ProdutoProvider lista,
+                    Widget? widget) {
                   return Botao(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        lista.criarProduto(ProdutoModel(
+                        lista.save(ProdutoModel(
                           id: geraUuid(),
                           nome: _nomeController.text,
                           quantidade: num.parse(_quantidadeController.text),

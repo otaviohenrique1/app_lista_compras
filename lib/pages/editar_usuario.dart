@@ -1,3 +1,4 @@
+import 'package:app_lista_compras/provider/usuario_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/botao.dart';
@@ -38,8 +39,9 @@ class _EditarUsuarioState extends State<EditarUsuario> {
 
   @override
   Widget build(BuildContext context) {
-    UsuarioData2 listTypes = Provider.of<UsuarioData2>(context, listen: false);
-    UsuarioModel usuario = listTypes.buscaUsuario(widget.id);
+    UsuarioProvider listTypes =
+        Provider.of<UsuarioProvider>(context, listen: false);
+    UsuarioModel usuario = listTypes.findById(widget.id);
 
     _nomeController.text = usuario.nome;
     _emailController.text = usuario.email;
@@ -99,13 +101,12 @@ class _EditarUsuarioState extends State<EditarUsuario> {
                 ),
                 const SizedBox(height: 32),
                 Consumer(
-                  builder: (BuildContext context, UsuarioData2 lista,
+                  builder: (BuildContext context, UsuarioProvider lista,
                       Widget? child) {
                     return Botao(
                       onPressed: () {
                         if (formKey.currentState!.validate()) {
-                          lista.editarUsuario(
-                            widget.id,
+                          lista.update(
                             UsuarioModel(
                               id: widget.id,
                               nome: _nomeController.text,
@@ -113,6 +114,7 @@ class _EditarUsuarioState extends State<EditarUsuario> {
                               senha: _senhaController.text,
                               dataCriacao: usuario.dataCriacao,
                             ),
+                            widget.id,
                           );
                           Navigator.pop(context);
                         }
