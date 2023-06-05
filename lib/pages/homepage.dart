@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:app_lista_compras/pages/novo_produto.dart';
 import 'package:app_lista_compras/components/lista_item.dart';
 import 'package:app_lista_compras/components/appbar.dart';
+import 'package:app_lista_compras/provider/produto_provider.dart';
 import 'package:app_lista_compras/styles/colors.dart';
-import 'package:app_lista_compras/utils/produto_data.dart';
-import 'package:provider/provider.dart';
 
 class Homepage extends StatefulWidget {
   const Homepage({super.key});
@@ -21,19 +21,21 @@ class _HomepageState extends State<Homepage> {
         titulo: "Lista",
         exibeBusca: true,
       ),
-      body: Consumer<ProdutoData2>(
-        builder: (BuildContext context, ProdutoData2 lista, Widget? widget) {
+      body: Consumer<ProdutoProvider>(
+        builder: (BuildContext context, ProdutoProvider produtoProviderConsumer,
+            Widget? widget) {
           return Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16),
             child: ListView.builder(
               padding: const EdgeInsets.symmetric(vertical: 24),
-              itemCount: lista.produtos.length,
+              itemCount: produtoProviderConsumer.listaProdutos.length,
               itemBuilder: (context, index) {
                 return ListaItem(
-                  id: lista.produtos[index].id,
-                  nome: lista.produtos[index].nome,
-                  quantidade: lista.produtos[index].quantidade,
-                  unidade: lista.produtos[index].unidade,
+                  id: produtoProviderConsumer.listaProdutos[index].id,
+                  nome: produtoProviderConsumer.listaProdutos[index].nome,
+                  quantidade:
+                      produtoProviderConsumer.listaProdutos[index].quantidade,
+                  unidade: produtoProviderConsumer.listaProdutos[index].unidade,
                 );
               },
             ),

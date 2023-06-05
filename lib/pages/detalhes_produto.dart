@@ -1,3 +1,4 @@
+import 'package:app_lista_compras/provider/produto_provider.dart';
 import 'package:app_lista_compras/utils/produto_data.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/item_detalhes.dart';
@@ -5,7 +6,6 @@ import 'package:app_lista_compras/components/appbar.dart';
 import 'package:app_lista_compras/components/botao.dart';
 import 'package:app_lista_compras/styles/colors.dart';
 import 'package:app_lista_compras/models/produto_model.dart';
-// import 'package:app_lista_compras/utils/data_teste.dart';
 import 'package:app_lista_compras/utils/helpers.dart';
 import 'package:provider/provider.dart';
 
@@ -24,8 +24,9 @@ class DetalhesProduto extends StatefulWidget {
 class _DetalhesProdutoState extends State<DetalhesProduto> {
   @override
   Widget build(BuildContext context) {
-    ProdutoData2 listTypes = Provider.of<ProdutoData2>(context, listen: false);
-    ProdutoModel produto = listTypes.buscaProduto(widget.id);
+    ProdutoProvider produtoProvider =
+        Provider.of<ProdutoProvider>(context, listen: false);
+    ProdutoModel produto = produtoProvider.findById(widget.id);
 
     return Scaffold(
       appBar: const AppBarHeader(
@@ -84,6 +85,20 @@ class _DetalhesProdutoState extends State<DetalhesProduto> {
                 label: "Editar",
                 backgroundColor: azul1,
                 fontColor: branco,
+              ),
+              Consumer(
+                builder: (BuildContext context,
+                    ProdutoProvider produtoProviderConsumer, Widget? child) {
+                  return Botao(
+                    onPressed: () {
+                      produtoProviderConsumer.delete(widget.id);
+                      Navigator.pop(context);
+                    },
+                    label: "remover",
+                    backgroundColor: azul1,
+                    fontColor: branco,
+                  );
+                },
               ),
             ],
           ),

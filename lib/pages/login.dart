@@ -1,5 +1,6 @@
 import 'package:app_lista_compras/models/usuario_model.dart';
 import 'package:app_lista_compras/pages/homepage.dart';
+import 'package:app_lista_compras/provider/usuario_provider.dart';
 import 'package:app_lista_compras/utils/usuario_data.dart';
 import 'package:flutter/material.dart';
 import 'package:app_lista_compras/components/appbar_simples.dart';
@@ -89,18 +90,20 @@ class _LoginState extends State<Login> {
                   validator: validaSenha,
                 ),
                 const SizedBox(height: 24),
-                Consumer(builder:
-                    (BuildContext context, UsuarioData2 lista, Widget? widget) {
+                Consumer<UsuarioProvider>(builder: (BuildContext context,
+                    UsuarioProvider usuarioProviderConsumer, Widget? widget) {
                   return Botao(
                     onPressed: () {
                       if (formKey.currentState!.validate()) {
-                        UsuarioModel? usuarioBuscado = lista.validaLogin(
-                          email: _emailController.text,
-                          senha: _senhaController.text,
-                        );
+                        late List<UsuarioModel> loginBusca;
+                        usuarioProviderConsumer
+                            .login(_emailController.text, _senhaController.text)
+                            .then((value) => loginBusca = value)
+                            .catchError((e) => e);
 
-                        if (usuarioBuscado != null) {
-                          /* enviar o usuario */
+                        if (loginBusca.isNotEmpty) {
+                          usuarioProviderConsumer
+                              .addIdUsuario(loginBusca.first.id);
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
@@ -108,11 +111,6 @@ class _LoginState extends State<Login> {
                             ),
                           );
                         } else {
-                          // ScaffoldMessenger.of(context).showSnackBar(
-                          //   const SnackBar(
-                          //     content: Text("Criando uma nova tarefa"),
-                          //   ),
-                          // );
                           showDialog<String>(
                             context: context,
                             builder: (BuildContext context) => AlertDialog(

@@ -52,6 +52,10 @@ class UsuarioProvider extends ChangeNotifier {
     // notifyListeners();
   }
 
+  Future<List<UsuarioModel>> login(String email, String senha) async {
+    return await UsuarioDao().login(email, senha);
+  }
+
   findById(String idTarefa) async {
     List<UsuarioModel> data = await UsuarioDao().findById(idTarefa);
     if (data.isNotEmpty) {

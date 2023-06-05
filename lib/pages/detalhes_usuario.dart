@@ -78,7 +78,7 @@ class _DetalhesUsuarioState extends State<DetalhesUsuario> {
                       usuarioProviderConsumer.delete(widget.id);
                       Navigator.pop(context);
                     },
-                    label: "Salvar",
+                    label: "Remover",
                     backgroundColor: azul1,
                     fontColor: branco,
                   );
